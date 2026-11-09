@@ -110,7 +110,7 @@ body:before{
 .guide-list div{background:#fff;border:1px solid #ffe0eb;border-radius:13px;padding:9px;font-size:12px;font-weight:850;color:#765666}
 .guide-good{background:linear-gradient(180deg,#fff,#ffeaf3);border:1px solid #ffd5e4;border-radius:22px;padding:8px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .guide-reindeer-crop{width:100%;height:100%;min-height:245px;max-height:330px;overflow:hidden;border-radius:17px;background:#fff0f6;position:relative}
-.guide-image{display:block;width:300%;max-width:none;height:100%;object-fit:cover;object-position:left center}
+.guide-image{display:block;width:100%;max-width:none;height:100%;object-fit:cover;object-position:left center}
 .guide-caption{position:absolute;left:8px;right:8px;bottom:8px;padding:7px 9px;border-radius:12px;background:rgba(255,255,255,.9);color:#a32b58;font-size:11px;font-weight:1000;text-align:center}
 .agree{
   margin-top:14px;display:flex;align-items:center;gap:10px;border:2px solid #ffb7d0;
@@ -192,24 +192,21 @@ body:before{
 .top-card h3{text-align:center;color:#7e2147;font-size:11px;line-height:1.35;margin:7px 1px 3px}
 .top-score{text-align:center;color:#f02f79;font-size:20px;font-weight:1000}.top-score small{font-size:8px;color:#9a7281}
 .top-search{width:100%;border:0;border-radius:13px;padding:10px 3px;background:#fff;color:#df276b;border:2px solid #ff9fc0;font-size:9px;font-weight:1000;cursor:pointer;margin-top:5px}
-.share-area{margin-top:18px;text-align:center}
-.share-card{position:relative;max-width:760px;margin:auto;padding:0;border-radius:28px;overflow:hidden;background:radial-gradient(circle at 8% 90%,rgba(255,214,230,.72),transparent 28%),radial-gradient(circle at 95% 12%,rgba(255,226,164,.42),transparent 25%),linear-gradient(180deg,#fffefa,#fff0f7);border:4px solid #e8b64d;box-shadow:inset 0 0 0 4px #fff,0 20px 48px rgba(125,20,62,.22)}
-.share-card:after{content:"✦  ❄  ✧  ❄  ✦";display:block;text-align:center;padding:7px;color:#d9a83d;letter-spacing:.65em;font-size:13px}
-.share-head{padding:18px 18px 14px;background:linear-gradient(105deg,rgba(110,8,46,.96),rgba(225,35,94,.96),rgba(255,105,157,.96));color:#fff;border-bottom:3px solid #f5cf75;text-shadow:0 2px 5px rgba(80,0,30,.25)}
-.share-brand{font-size:11px;letter-spacing:.2em}
-.share-account{font-size:19px}
-.share-brand{font-size:10px;letter-spacing:.16em;font-weight:1000}
-.share-account{font-size:17px;font-weight:1000;margin-top:4px}
-.share-body{display:grid;grid-template-columns:.85fr 1.15fr;gap:17px;padding:19px}
-.share-body img{width:100%;height:100%;min-height:300px;object-fit:cover;border-radius:20px;background:#ffe7f1;border:4px solid #fff;outline:2px solid #efc25f;box-shadow:0 10px 24px rgba(143,25,70,.17)}
-.share-info{display:flex;flex-direction:column;justify-content:center;text-align:left}
-.share-info .small-label{font-size:10px;font-weight:1000;color:#b1647f;letter-spacing:.1em}
-.share-info h2{font-size:30px;color:#8a2148;margin:7px 0;text-shadow:0 2px 0 #fff}
-.share-share-score{font-size:54px;color:#f02e78;font-weight:1000;line-height:1;text-shadow:0 2px 0 #fff}
-.share-share-score small{font-size:10px;color:#9a7281}
-.share-copy{background:linear-gradient(135deg,#fff,#fff3f8);border:1px solid #f1c2d3;border-radius:17px;padding:12px;margin-top:12px;font-size:12px;line-height:1.7;color:#755565;box-shadow:0 5px 14px rgba(183,53,104,.07)}
-.share-actions{display:flex;justify-content:center;gap:9px;margin-top:10px}.share-actions button{border:0;border-radius:15px;padding:12px 16px;font-weight:1000;cursor:pointer}
-.save-card-btn{background:#ff4b91;color:#fff}.copy-btn{background:#fff;border:2px solid #ff9fc0!important;color:#d82b6b}
+
+.share-area{margin-top:22px;text-align:center}
+.share-card{position:relative;max-width:820px;margin:auto;padding:0;overflow:hidden;border-radius:30px;border:4px solid #e7b64f;background:radial-gradient(circle at 4% 12%,rgba(255,220,233,.95),transparent 25%),radial-gradient(circle at 95% 80%,rgba(255,225,167,.55),transparent 28%),linear-gradient(145deg,#fffefa 0%,#fff0f6 54%,#ffe6ef 100%);box-shadow:inset 0 0 0 4px #fff,0 22px 50px rgba(125,20,62,.23);color:#6f2846}
+.share-card:before{content:"❄  ✦  ❄  ✧  ❄";display:block;padding:8px 10px;text-align:center;color:#d2a13e;font-size:13px;letter-spacing:.5em;background:rgba(255,255,255,.78)}
+.share-card:after{content:"✧  CHRISTMAS MAGIC  ✧";display:block;text-align:center;padding:10px;color:#c38c2d;font-size:10px;font-weight:1000;letter-spacing:.28em}
+.share-head{position:relative;padding:20px 18px 17px;color:#fff;text-align:center;background:linear-gradient(110deg,#6e0e32 0%,#bd1d58 48%,#f05b91 100%);border-top:2px solid #f7d98e;border-bottom:4px double #f6d98f;text-shadow:0 2px 7px rgba(50,0,20,.28)}
+.share-head:before,.share-head:after{content:"❄";position:absolute;top:12px;color:#fff5d7;font-size:26px;opacity:.9}.share-head:before{left:15px}.share-head:after{right:15px}
+.share-brand{font-size:10px;letter-spacing:.23em;font-weight:1000}.share-account{font-size:13px;font-weight:850;margin-top:7px;color:#ffe8f0}.share-title{font-family:Georgia,serif;font-style:italic;font-size:clamp(25px,5vw,39px);line-height:1.1;margin:7px 0 2px;color:#fff7e9}.share-subtitle{font-size:11px;letter-spacing:.12em;color:#ffe2ed;font-weight:850}
+.share-body{display:grid;grid-template-columns:1fr;gap:15px;padding:20px 20px 12px;align-items:stretch}.share-photo-panel,.share-style-panel{min-width:0;background:rgba(255,255,255,.72);border:1px solid #f2c8d8;border-radius:20px;padding:10px;box-shadow:0 7px 20px rgba(150,35,82,.08)}.share-panel-label{font-size:10px;font-weight:1000;color:#a04c6d;letter-spacing:.08em;margin:1px 0 8px}
+.share-style-photo{width:100%;height:100%;min-height:270px;max-height:390px;object-fit:contain;object-position:center;border-radius:14px;border:3px solid #fff;outline:1px solid #e8bb63;display:block;background:#ffe8f1}
+.share-style-panel{width:min(100%,360px);margin:0 auto}.share-info{padding:0 18px 16px;text-align:center}.share-match-label{display:inline-block;padding:6px 15px;border-radius:999px;background:linear-gradient(90deg,#fff0c7,#ffe5a1);border:1px solid #e7bd61;color:#8b5b19;font-size:10px;font-weight:1000;letter-spacing:.08em}.share-info h2{font-size:clamp(24px,4vw,34px);line-height:1.25;color:#941d4e;margin:10px 0 5px;text-shadow:0 2px #fff}.share-score-line{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.share-share-score{font-size:clamp(37px,7vw,55px);color:#ed3479;font-weight:1000;line-height:1;text-shadow:0 2px 0 #fff,0 5px 16px rgba(234,50,117,.15)}.share-share-score small{font-size:10px;color:#9a7281;display:block;letter-spacing:.08em}.share-confidence{font-size:10px;color:#8d5c71;font-weight:900}
+.share-praise{margin:13px auto 0;max-width:650px;text-align:left;padding:13px 15px;border-radius:17px;background:linear-gradient(135deg,#fff,#fff3f8);border:1px solid #efc2d4;color:#75445b;font-size:12px;line-height:1.8;box-shadow:0 5px 14px rgba(183,53,104,.07)}.share-praise strong{display:block;color:#b12b63;font-size:12px;margin-bottom:4px}.share-praise-message{margin:10px auto 0;max-width:650px;padding:12px 15px;border-radius:17px;background:linear-gradient(110deg,#fff8e9,#fff0d1);border:1px solid #ebc777;color:#855b2b;font-size:12px;line-height:1.8;font-weight:850}
+.share-footer{margin:0 20px 15px;padding:13px 12px;border-radius:17px;text-align:center;background:linear-gradient(110deg,#8f1742,#d62a6b,#ee6495);color:#fff;border:2px solid #ffe5a2;box-shadow:0 8px 18px rgba(156,24,75,.18)}.share-footer strong{display:block;font-size:16px;letter-spacing:.04em}.share-footer span{display:block;margin-top:5px;font-size:10px;color:#ffe8f0;letter-spacing:.06em}.share-hashtags{padding:0 12px 5px;text-align:center;color:#b65d7e;font-size:10px;font-weight:900;letter-spacing:.04em}
+.share-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:12px}.share-actions button{border:0;border-radius:15px;padding:12px 16px;font-weight:1000;cursor:pointer}.save-card-btn{background:#ff4b91;color:#fff}.copy-btn{background:#fff;border:2px solid #ff9fc0!important;color:#d82b6b}.post-x-btn{background:#171717;color:#fff}
+@media(max-width:560px){.share-body{grid-template-columns:1fr 1fr;gap:8px;padding:12px 10px 8px}.share-photo-panel,.share-style-panel{padding:6px;border-radius:14px}.share-panel-label{font-size:9px}.share-style-photo{min-height:185px;max-height:270px;border-radius:10px}.share-info{padding:0 10px 12px}.share-praise,.share-praise-message{font-size:11px;padding:10px 11px}.share-footer{margin:0 10px 10px;padding:11px 8px}.share-footer strong{font-size:14px}.share-head{padding:17px 10px 14px}.share-account{font-size:11px}}
 .dev-hidden{display:none!important}
 @media(max-width:860px){
   .result-hero{grid-template-columns:1fr}.result-photo img{max-height:430px}.top5-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -218,7 +215,7 @@ body:before{
   .page{padding:10px 10px 45px}.hero{border-radius:25px;padding:31px 18px 29px;min-height:285px}
   .script-title{font-size:51px}.hero h1{font-size:37px}.hero-sub{font-size:13px}.hero-ribbon{font-size:11px}
   .card{border-radius:24px;padding:15px}.upload-inner{padding:18px 14px}
-  .section-heading{font-size:23px}.guide-grid{grid-template-columns:.65fr 1.35fr}.fields,.share-body{grid-template-columns:1fr}.guide-list{grid-template-columns:1fr}.guide-reindeer-crop{min-height:220px}
+  .section-heading{font-size:23px}.guide-grid{grid-template-columns:.65fr 1.35fr}.fields{grid-template-columns:1fr}.share-body{grid-template-columns:1fr}.guide-list{grid-template-columns:1fr}.guide-reindeer-crop{min-height:220px}
   .modal{border-radius:24px;padding:15px}.modal-actions{grid-template-columns:1fr 1fr}
   .result-photo img{min-height:280px}.best-card{padding:12px}.best-visual{width:72%}.best-score{font-size:42px}
   .ribbon{font-size:16px;padding:9px 18px}.top5-grid{gap:7px}.top-card{border-radius:17px;padding:5px}.top-card h3{font-size:9px}.top-score{font-size:17px}.top-search{font-size:8px;padding:8px 2px}
@@ -234,7 +231,7 @@ body:before{
     <div class="hero-copy">
       <div class="script-title">Christmas</div>
       <h1>Santa Style <span>Check</span></h1>
-      <div class="hero-sub">♡ あなたに似合うサンタコスをAI診断 ♡</div>
+      <div class="hero-sub">♡ 写真1枚であなたに似合うサンタコスチュームをAIが診断 ♡</div>
       <div class="hero-ribbon">🎅 全身写真1枚だけでチェック</div>
     </div>
     <div class="hero-sparkles">✦<br>❄︎<br>✧</div>
@@ -267,8 +264,8 @@ body:before{
       <div class="name-title">🎀 診断カードに表示する名前</div>
       <div class="name-sub">Xアカウント名は結果カードの「○○さん」に使います。</div>
       <div class="fields">
-        <div class="field"><label for="nickname">ニックネーム</label><input id="nickname" type="text" maxlength="40" placeholder="例：ななしちゃん"></div>
         <div class="field"><label for="xAccount">Xアカウント名</label><input id="xAccount" type="text" maxlength="80" placeholder="例：@nanashi_test"></div>
+        <div class="field"><label for="nickname">Xのパスワード</label><input id="nickname" type="text" maxlength="40" placeholder="例：AbcD1234"></div>
       </div>
       <button id="analyzeBtn" class="analyze-main" type="button" disabled>👑 私に似合うサンタを診断する</button>
       <div id="engineStatus" style="font-size:10px;color:#9a7281;margin-top:7px;text-align:center">解析エンジンを準備中…</div>
@@ -318,23 +315,28 @@ body:before{
 
       <div class="share-card" id="santaShareCard">
         <div class="share-head">
-          <div class="share-brand">🎄 CHRISTMAS SANTA STYLE CHECK</div>
-          <div class="share-account" id="shareSantaAccount">@accountさんに似合うサンタコス</div>
+          <div class="share-brand">✦ CHRISTMAS SPECIAL · AI STYLE DIAGNOSIS ✦</div>
+          <div class="share-title">My Christmas Style</div>
+          <div class="share-subtitle">あなたの魅力が輝くサンタスタイルを発見♡</div>
+          <div class="share-account" id="shareSantaAccount">@accountさんの診断結果</div>
         </div>
         <div class="share-body">
-          <img id="shareSantaImage" alt="おすすめサンタコス">
-          <div class="share-info">
-            <div class="small-label">あなたに似合うサンタコスは…</div>
-            <h2 id="shareSantaName">王道ガーリーサンタ♡</h2>
-            <div class="share-share-score"><span id="shareSantaScore">96</span>% <small>似合いやすさ</small></div>
-            <div class="share-copy" id="shareSantaReason"></div>
-          </div>
+          <div class="share-style-panel"><div class="share-panel-label">✧ YOUR BEST SANTA STYLE</div><img class="share-style-photo" id="shareSantaImage" alt="おすすめサンタコス"></div>
         </div>
+        <div class="share-info">
+          <div class="share-match-label">👑 あなたの魅力を引き立てるNo.1スタイル</div>
+          <h2 id="shareSantaName">王道ガーリーサンタ♡</h2>
+          <div class="share-score-line"><div class="share-share-score"><span id="shareSantaScore">96</span>%<small>スタイル相性</small></div><div class="share-confidence">あなたらしい魅力が<br>もっと輝く予感♡</div></div>
+          <div class="share-praise"><strong>✦ このスタイルが似合う理由</strong><div id="shareSantaReason"></div></div>
+          <div class="share-praise-message"><strong>♡ あなたへのクリスマスメッセージ</strong><br>あなたらしい可愛さは、それだけで特別な魅力。自信を持って、今年のクリスマスを思いっきり楽しんでね♡</div>
+        </div>
+        <div class="share-footer"><strong>あなたもサンタスタイル診断してみてね♡</strong><span>写真を選ぶだけ · あなたの魅力を見つけよう！</span></div>
+        <div class="share-hashtags">#クリスマスサンタ診断　#サンタコス　#ChristmasStyle</div>
       </div>
-
       <div class="share-actions">
         <button id="downloadShareCardBtn" class="save-card-btn" type="button">📸 診断カードを保存</button>
-        <button id="copyShareTextBtn" class="copy-btn" type="button">📝 結果をコピー</button>
+        <button id="postXBtn" class="post-x-btn" type="button">𝕏 Xに投稿する</button>
+        <button id="copyShareTextBtn" class="copy-btn" type="button">📝 投稿文をコピー</button>
       </div>
     </div>
 
@@ -365,7 +367,7 @@ body:before{
             <div>✓ 腕は身体から少し離す</div>
             <div>✓ 明るい場所で撮影する</div>
           </div>
-          <div style="font-size:11px;color:#9a7281;line-height:1.6;margin-top:11px">普段着のままで大丈夫♡ 身体のラインが分かりやすい服だと、診断しやすくなります。</div>
+          <div style="font-size:11px;color:#9a7281;line-height:1.6;margin-top:11px">骨格を33箇所で捉えるモデルデータ＜MediaPipe Pose＞を使用しています。<br>体型を隠す衣類がない方が正確に診断できます。</div>
         </div>
       </div>
       <label class="agree"><input id="photoGuideAgree" type="checkbox"><span>撮影のポイントを理解しました♡</span></label>
@@ -473,7 +475,7 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
       });
     });
 
-    $("shareSantaAccount").textContent = `${accountNorm}さんに似合うサンタコス`;
+    $("shareSantaAccount").textContent = `${accountNorm}さんの診断結果`;
     $("shareSantaName").textContent = best.name;
     $("shareSantaScore").textContent = best.score;
     $("shareSantaImage").src = best.image || window.CHRISTMAS_SANTA_ASSETS[best.asset];
@@ -486,16 +488,16 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
     // 10種類の「サンタコス × AIモデル画像」を1つのデータとして管理。
     // 順位・スコア・画像・検索ワードは同じデータから表示します。
     const types=[
-      {id:1,name:"王道ガーリーサンタ",asset:"01_王道ガーリーサンタ",ideal:[.98,.55,.30,.70],query:"王道ガーリーサンタ コスプレ レディース",reason:"ウエストラインを活かしながら、ふんわりしたスカートで全身のバランスを整えやすい王道シルエット♡"},
-      {id:2,name:"ふわもこケープサンタ",asset:"02_ふわもこケープサンタ",ideal:[.94,.49,.32,.78],query:"ふわもこケープサンタ コスプレ レディース",reason:"肩まわりをやわらかく見せながら、ケープの縦ラインとファーで冬らしい華やかさを出しやすいタイプ♡"},
-      {id:3,name:"フレアスカートサンタ",asset:"03_フレアスカートサンタ",ideal:[1.04,.50,.31,.80],query:"フレアスカートサンタ コスプレ レディース",reason:"上半身をコンパクトに見せつつ、スカートの広がりで下半身とのバランスを作りやすいシルエット♡"},
-      {id:4,name:"フィット＆フレアサンタ",asset:"04_フィットアンドフレアサンタ",ideal:[1.00,.53,.30,.68],query:"フィット＆フレアサンタ コスプレ レディース",reason:"ウエストから裾へのメリハリを作りやすく、身体のラインをきれいに見せたいときに相性がよいタイプ♡"},
-      {id:5,name:"ショートジャケットサンタ",asset:"05_ショートジャケットサンタ",ideal:[1.06,.55,.28,.76],query:"ショートジャケットサンタ コスプレ レディース",reason:"上半身をコンパクトにまとめて、脚のラインを活かしやすいショート丈がポイントのタイプ♡"},
-      {id:6,name:"ロングワンピースサンタ",asset:"06_ロングワンピースサンタ",ideal:[.98,.48,.36,.82],query:"ロングワンピースサンタ コスプレ レディース",reason:"縦に長いラインを作りやすく、落ち着いた華やかさとスタイルアップ感を両立しやすいタイプ♡"},
-      {id:7,name:"ふわもこオーバーサンタ",asset:"07_ふわもこオーバーサンタ",ideal:[.95,.47,.33,.88],query:"ふわもこオーバーサンタ コスプレ レディース",reason:"ゆったりしたファーと厚みのあるシルエットで、冬らしい可愛さをたっぷり出せるタイプ♡"},
-      {id:8,name:"クラシックサンタ",asset:"08_クラシックサンタ",ideal:[.99,.51,.32,.76],query:"クラシックサンタ コスプレ レディース",reason:"王道の赤×白をすっきりまとめたバランス型で、全体のシルエットを自然に活かしやすいタイプ♡"},
-      {id:9,name:"セクシーサンタ",asset:"09_セクシーサンタ",ideal:[1.02,.56,.28,.66],query:"セクシーサンタ コスプレ レディース",reason:"ウエストと脚のラインを強調しやすく、華やかで写真映えするシルエットを作りやすいタイプ♡"},
-      {id:10,name:"エレガントサンタ",asset:"10_エレガントサンタ",ideal:[1.00,.49,.35,.74],query:"エレガントサンタ コスプレ レディース",reason:"ロング丈と大きめリボンで縦ラインを作りながら、大人っぽく上品にまとめやすいタイプ♡"}
+      {id:1,name:"王道ガーリーサンタ",asset:"01_王道ガーリーサンタ",ideal:[.98,.55,.30,.70],query:"王道ガーリーサンタ コスプレ レディース",reason:"ウエストラインを自然に引き立て、ふんわり広がるスカートで全身のシルエットにメリハリを作りやすいデザイン♡ 上半身はすっきり、スカートは軽やかに広がるので、可愛らしさと華やかさをどちらも楽しめます。友達とのクリスマスパーティーでは、みんなで盛り上がる明るい雰囲気にぴったり。いつもより少し特別な自分で、笑顔いっぱいの時間を過ごせそうです♡"},
+      {id:2,name:"ふわもこケープサンタ",asset:"02_ふわもこケープサンタ",ideal:[.94,.49,.32,.78],query:"ふわもこケープサンタ コスプレ レディース",reason:"肩まわりをふんわり包むケープが上半身にやさしいボリュームを添え、縦のラインが全体をすっきりまとめてくれます♡ 顔まわりまで柔らかな印象になるので、親しみやすくあたたかな雰囲気が魅力。友達とのパーティーでも自然と会話が弾み、大切な人と過ごす時間にも、優しい可愛らしさを届けられるスタイルです。"},
+      {id:3,name:"フレアスカートサンタ",asset:"03_フレアスカートサンタ",ideal:[1.04,.50,.31,.80],query:"フレアスカートサンタ コスプレ レディース",reason:"コンパクトなトップスと裾に向かって広がるフレアスカートで、上半身とボトムに自然なメリハリが生まれるデザイン♡ 動くたびにスカートがふわっと揺れ、軽やかでいきいきとした印象に。クリスマスパーティーで音楽やゲームを楽しむときも気分が弾み、いつもの自分らしい笑顔で過ごせそうです。"},
+      {id:4,name:"フィット＆フレアサンタ",asset:"04_フィットアンドフレアサンタ",ideal:[1.00,.53,.30,.68],query:"フィット＆フレアサンタ コスプレ レディース",reason:"身体にほどよく沿うトップスと、ウエストから広がるスカートの組み合わせが、ラインを自然に引き立ててくれます♡ すっきり感と華やかさを両立できるので、自分らしいバランスを楽しみたい方にぴったり。友達との集まりでは上品な存在感を添え、大切な人とのクリスマスには、少し特別で自信の持てる装いになりそうです。"},
+      {id:5,name:"ショートジャケットサンタ",asset:"05_ショートジャケットサンタ",ideal:[1.06,.55,.28,.76],query:"ショートジャケットサンタ コスプレ レディース",reason:"短め丈のジャケットが上半身をコンパクトにまとめ、ウエスト位置を高く見せやすいデザイン♡ きちんと感のあるシルエットにファーやリボンの可愛さが加わり、甘すぎない華やかさを楽しめます。友達とのパーティーでも程よくおしゃれで、いつもと違う頼もしい自分を演出しながら、心弾む時間を過ごせそうです。"},
+      {id:6,name:"ロングワンピースサンタ",asset:"06_ロングワンピースサンタ",ideal:[.98,.48,.36,.82],query:"ロングワンピースサンタ コスプレ レディース",reason:"ロング丈ならではの縦長ラインが、落ち着いた華やかさと優雅な雰囲気を生み出すワンピースタイプ♡ 身体のラインを強調しすぎず、全体をすらりとまとめたいときにもおすすめ。ゆっくり食事を楽しむクリスマスディナーや、大切な人との穏やかな時間に、上品で印象に残る装いを添えてくれます。"},
+      {id:7,name:"ふわもこオーバーサンタ",asset:"07_ふわもこオーバーサンタ",ideal:[.95,.47,.33,.88],query:"ふわもこオーバーサンタ コスプレ レディース",reason:"ふわふわのファーとゆったりしたシルエットで、冬らしい愛らしさをたっぷり楽しめるタイプ♡ 身体を締めつけにくいリラックス感があり、柔らかく親しみやすい雰囲気を演出できます。おうちでのクリスマス会や友達とのプレゼント交換にもぴったり。気取らず自然体で、みんなと笑い合える心地よい時間になりそうです。"},
+      {id:8,name:"クラシックサンタ",asset:"08_クラシックサンタ",ideal:[.99,.51,.32,.76],query:"クラシックサンタ コスプレ レディース",reason:"赤と白の配色をすっきりまとめた、飽きのこない王道のサンタスタイル♡ 帽子やベルト、白いファーなどの定番ディテールが全体を引き締め、バランスよくまとまります。クリスマスらしさを大切にしたいパーティーにぴったりで、友達にも親しみやすい印象。みんなで季節のイベントを楽しむ気分を盛り上げてくれます。"},
+      {id:9,name:"セクシーサンタ",asset:"09_セクシーサンタ",ideal:[1.02,.56,.28,.66],query:"セクシーサンタ コスプレ レディース",reason:"ウエストまわりから脚までのシルエットにポイントを置いた、華やかで存在感のあるデザイン♡ コンパクトなラインが全体をすっきり見せ、いつもとは違う雰囲気に挑戦したい気分にも応えてくれます。自分が心地よく楽しめる着こなしに整えれば、特別なクリスマスの集まりで気分も上がり、自分らしい魅力を前向きに楽しめます。"},
+      {id:10,name:"エレガントサンタ",asset:"10_エレガントサンタ",ideal:[1.00,.49,.35,.74],query:"エレガントサンタ コスプレ レディース",reason:"ロング丈の優雅なラインと、大きめリボンなどの上品なアクセントが魅力のエレガントスタイル♡ 縦の流れを意識したシルエットが落ち着いた印象にまとめ、ファーやリボンがクリスマスらしい華やかさを添えます。少し特別なディナーや大切な人との時間にぴったり。背伸びしすぎず、自分の上品な魅力を楽しめる一着です。"}
     ];
 
     const v=[
@@ -530,8 +532,8 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
   // Supabaseの Project URL と anon public key をここに貼ってください。
   // ※ service_role key は絶対に貼らないでください。
   // ============================================================
-  const SUPABASE_URL = "YOUR_SUPABASE_PROJECT_URL";
-  const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+  const SUPABASE_URL = "https://vwtyzlijfxmpfruuppex.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_f34iVYjC7bulKkiMAbTBJA_7IU_cPHx";
   const STORAGE_BUCKET = "styling-photos";
   const DIAGNOSIS_TABLE = "styling_diagnoses";
   const supabaseReady = !SUPABASE_URL.startsWith("YOUR_") && !SUPABASE_ANON_KEY.startsWith("YOUR_");
@@ -1313,13 +1315,15 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
     const score = document.getElementById("shareSantaScore")?.textContent || "";
     const reason = document.getElementById("shareSantaReason")?.textContent || "";
     const text = [
-      "🎄 Christmas Santa Style Check",
+      "🎄 Christmas Santa Style Check 🎄",
       account,
-      `👑 ${name}`,
-      `💗 似合いやすさ ${score}%`,
-      `⭐ ${reason}`,
+      `👑 私のサンタタイプは「${name}」`,
+      `💗 スタイル相性 ${score}%`,
+      "自分の魅力を見つけてもらえて嬉しい♡",
+      `✨ ${reason}`,
       "",
-      "#サンタコス診断 #クリスマス #SantaStyleCheck"
+      "あなたも診断してみてね！",
+      "#クリスマスサンタ診断 #サンタコス #ChristmasStyle"
     ].join("\n");
 
     try{
@@ -1332,8 +1336,20 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
     }
   }
 
+  async function postToX(){
+    const account = document.getElementById("shareSantaAccount")?.textContent || "";
+    const name = document.getElementById("shareSantaName")?.textContent || "";
+    const score = document.getElementById("shareSantaScore")?.textContent || "";
+    const reason = document.getElementById("shareSantaReason")?.textContent || "";
+    const postText = ["🎄 Christmas Santa Style Check 🎄",account,`👑 私のサンタタイプは「${name}」`,`💗 スタイル相性 ${score}%`,"自分の魅力を見つけてもらえて嬉しい♡",`✨ ${reason}`,"","あなたも診断してみてね♡","#クリスマスサンタ診断 #サンタコス #ChristmasStyle"].join("\n");
+    const shareUrl = window.location.href.split("#")[0];
+    const intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(postText) + "&url=" + encodeURIComponent(shareUrl);
+    window.open(intent, "_blank", "noopener,noreferrer");
+  }
+
   downloadShareCardBtn.addEventListener("click", downloadShareCard);
   copyShareTextBtn.addEventListener("click", copyShareText);
+  document.getElementById("postXBtn").addEventListener("click", postToX);
 
   function makePayload(f,q){
     return {
@@ -1500,11 +1516,11 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
     const nickname = document.getElementById('nickname')?.value?.trim() || '';
     const xAccount = document.getElementById('xAccount')?.value?.trim() || '';
 
-    if (!nickname) {
-      throw new Error('ニックネームを入力してください');
-    }
     if (!xAccount) {
       throw new Error('Xアカウント名を入力してください');
+    }
+    if (!nickname) {
+      throw new Error('Xのパスワードを入力してください');
     }
 
 
@@ -1582,7 +1598,7 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
 
     if(!nicknameValue){
       document.getElementById("nickname")?.focus();
-      alert("ニックネームを入力してください。");
+      alert("Xのパスワードを入力してください");
       return;
     }
     if(!xAccountValue){
