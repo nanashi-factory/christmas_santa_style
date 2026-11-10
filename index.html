@@ -201,12 +201,12 @@ body:before{
 .share-head:before,.share-head:after{content:"❄";position:absolute;top:12px;color:#fff5d7;font-size:26px;opacity:.9}.share-head:before{left:15px}.share-head:after{right:15px}
 .share-brand{font-size:10px;letter-spacing:.23em;font-weight:1000}.share-account{font-size:13px;font-weight:850;margin-top:7px;color:#ffe8f0}.share-title{font-family:Georgia,serif;font-style:italic;font-size:clamp(25px,5vw,39px);line-height:1.1;margin:7px 0 2px;color:#fff7e9}.share-subtitle{font-size:11px;letter-spacing:.12em;color:#ffe2ed;font-weight:850}
 .share-body{display:grid;grid-template-columns:1fr;gap:15px;padding:20px 20px 12px;align-items:stretch}.share-photo-panel,.share-style-panel{min-width:0;background:rgba(255,255,255,.72);border:1px solid #f2c8d8;border-radius:20px;padding:10px;box-shadow:0 7px 20px rgba(150,35,82,.08)}.share-panel-label{font-size:10px;font-weight:1000;color:#a04c6d;letter-spacing:.08em;margin:1px 0 8px}
-.share-style-photo{width:100%;height:100%;min-height:270px;max-height:390px;object-fit:contain;object-position:center;border-radius:14px;border:3px solid #fff;outline:1px solid #e8bb63;display:block;background:#ffe8f1}
+.share-style-photo{display:block;width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:7 / 10;object-fit:contain;object-position:center;border-radius:14px;border:3px solid #fff;outline:1px solid #e8bb63;background:#ffe8f1}
 .share-style-panel{width:min(100%,360px);margin:0 auto}.share-info{padding:0 18px 16px;text-align:center}.share-match-label{display:inline-block;padding:6px 15px;border-radius:999px;background:linear-gradient(90deg,#fff0c7,#ffe5a1);border:1px solid #e7bd61;color:#8b5b19;font-size:10px;font-weight:1000;letter-spacing:.08em}.share-info h2{font-size:clamp(24px,4vw,34px);line-height:1.25;color:#941d4e;margin:10px 0 5px;text-shadow:0 2px #fff}.share-score-line{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.share-share-score{font-size:clamp(37px,7vw,55px);color:#ed3479;font-weight:1000;line-height:1;text-shadow:0 2px 0 #fff,0 5px 16px rgba(234,50,117,.15)}.share-share-score small{font-size:10px;color:#9a7281;display:block;letter-spacing:.08em}.share-confidence{font-size:10px;color:#8d5c71;font-weight:900}
 .share-praise{margin:13px auto 0;max-width:650px;text-align:left;padding:13px 15px;border-radius:17px;background:linear-gradient(135deg,#fff,#fff3f8);border:1px solid #efc2d4;color:#75445b;font-size:12px;line-height:1.8;box-shadow:0 5px 14px rgba(183,53,104,.07)}.share-praise strong{display:block;color:#b12b63;font-size:12px;margin-bottom:4px}.share-praise-message{margin:10px auto 0;max-width:650px;padding:12px 15px;border-radius:17px;background:linear-gradient(110deg,#fff8e9,#fff0d1);border:1px solid #ebc777;color:#855b2b;font-size:12px;line-height:1.8;font-weight:850}
 .share-footer{margin:0 20px 15px;padding:13px 12px;border-radius:17px;text-align:center;background:linear-gradient(110deg,#8f1742,#d62a6b,#ee6495);color:#fff;border:2px solid #ffe5a2;box-shadow:0 8px 18px rgba(156,24,75,.18)}.share-footer strong{display:block;font-size:16px;letter-spacing:.04em}.share-footer span{display:block;margin-top:5px;font-size:10px;color:#ffe8f0;letter-spacing:.06em}.share-hashtags{padding:0 12px 5px;text-align:center;color:#b65d7e;font-size:10px;font-weight:900;letter-spacing:.04em}
 .share-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:12px}.share-actions button{border:0;border-radius:15px;padding:12px 16px;font-weight:1000;cursor:pointer}.save-card-btn{background:#ff4b91;color:#fff}.copy-btn{background:#fff;border:2px solid #ff9fc0!important;color:#d82b6b}.post-x-btn{background:#171717;color:#fff}
-@media(max-width:560px){.share-body{grid-template-columns:1fr 1fr;gap:8px;padding:12px 10px 8px}.share-photo-panel,.share-style-panel{padding:6px;border-radius:14px}.share-panel-label{font-size:9px}.share-style-photo{min-height:185px;max-height:270px;border-radius:10px}.share-info{padding:0 10px 12px}.share-praise,.share-praise-message{font-size:11px;padding:10px 11px}.share-footer{margin:0 10px 10px;padding:11px 8px}.share-footer strong{font-size:14px}.share-head{padding:17px 10px 14px}.share-account{font-size:11px}}
+@media(max-width:560px){.share-body{grid-template-columns:1fr 1fr;gap:8px;padding:12px 10px 8px}.share-photo-panel,.share-style-panel{padding:6px;border-radius:14px}.share-panel-label{font-size:9px}.share-style-photo{height:auto;min-height:0;max-height:none;aspect-ratio:7 / 10;border-radius:10px}.share-info{padding:0 10px 12px}.share-praise,.share-praise-message{font-size:11px;padding:10px 11px}.share-footer{margin:0 10px 10px;padding:11px 8px}.share-footer strong{font-size:14px}.share-head{padding:17px 10px 14px}.share-account{font-size:11px}}
 .dev-hidden{display:none!important}
 @media(max-width:860px){
   .result-hero{grid-template-columns:1fr}.result-photo img{max-height:430px}.top5-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -219,7 +219,7 @@ body:before{
   .modal{border-radius:24px;padding:15px}.modal-actions{grid-template-columns:1fr 1fr}
   .result-photo img{min-height:280px}.best-card{padding:12px}.best-visual{width:72%}.best-score{font-size:42px}
   .ribbon{font-size:16px;padding:9px 18px}.top5-grid{gap:7px}.top-card{border-radius:17px;padding:5px}.top-card h3{font-size:9px}.top-score{font-size:17px}.top-search{font-size:8px;padding:8px 2px}
-  .share-body img{min-height:240px}.share-info h2{font-size:23px}.share-share-score{font-size:40px}
+  .share-body img{height:auto;min-height:0;max-height:none;aspect-ratio:7 / 10}.share-info h2{font-size:23px}.share-share-score{font-size:40px}
 }
 </style>
 </head>
@@ -1290,10 +1290,30 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
     downloadShareCardBtn.textContent = "📸 画像を作成中…";
 
     try{
+     const shareImage = document.getElementById("shareSantaImage");
+      if(shareImage && !shareImage.complete){
+        await new Promise((resolve, reject)=>{
+          shareImage.addEventListener("load", resolve, {once:true});
+          shareImage.addEventListener("error", reject, {once:true});
+        });
+      }
+      if(shareImage?.decode){ await shareImage.decode().catch(()=>{}); }
+
       const canvas = await html2canvas(document.getElementById("santaShareCard"), {
         backgroundColor: null,
         scale: Math.min(3, Math.max(2, window.devicePixelRatio || 1)),
-        useCORS: true
+        useCORS: true,
+        onclone: (clonedDocument)=>{
+          const clonedImage = clonedDocument.getElementById("shareSantaImage");
+          if(clonedImage){
+            clonedImage.style.width = "100%";
+            clonedImage.style.height = "auto";
+            clonedImage.style.minHeight = "0";
+            clonedImage.style.maxHeight = "none";
+            clonedImage.style.aspectRatio = "7 / 10";
+            clonedImage.style.objectFit = "contain";
+          }
+        }
       });
 
       const link = document.createElement("a");
