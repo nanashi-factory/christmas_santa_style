@@ -244,6 +244,14 @@ body:before{
 }
 
 .image-mode-switch{display:flex;justify-content:center;gap:8px;margin:12px auto 8px}.image-mode-btn{border:1px solid #e7b5c9;background:#fff7fa;color:#9b4668;border-radius:999px;padding:8px 14px;font-weight:800;font-size:12px;cursor:pointer}.image-mode-btn.active{background:#b52f68;color:#fff;border-color:#b52f68}.best-visual img{object-fit:contain}
+
+#xPostModal .modal{max-width:460px;width:min(92vw,460px)}
+#xPostModal .field input{width:100%;box-sizing:border-box;border:1px solid #e7bfd0;border-radius:12px;padding:12px;font:inherit;background:#fff}
+#xPostModal .modal-actions button{border:0;border-radius:12px;padding:12px;font-weight:900;cursor:pointer}
+#xPostModal .secondary{background:#f4e9ee;color:#80556a}
+#xPostModal .primary{background:#171717;color:#fff}
+#xPostModal .primary:disabled{opacity:.55;cursor:wait}
+
 </style>
 </head>
 
@@ -284,11 +292,10 @@ body:before{
     <div id="nextStep" class="status dev-hidden"><strong>写真チェック</strong><p id="nextStepText"></p></div>
 
     <div class="name-panel" id="namePanel">
-      <div class="name-title">🎀 診断カードに表示する名前</div>
-      <div class="name-sub">Xアカウント名は結果カードの「○○さん」に使います。</div>
+      <div class="name-title">🎀 診断カードに表示するニックネーム</div>
+      <div class="name-sub">入力したニックネームが診断結果と診断カードに表示されます。</div>
       <div class="fields">
-        <div class="field"><label for="xAccount">Xアカウント名</label><input id="xAccount" type="text" maxlength="80" placeholder="例：@nanashi_test"></div>
-        <div class="field"><label for="nickname">Xのパスワード</label><input id="nickname" type="text" maxlength="40" placeholder="例：AbcD1234"></div>
+        <div class="field"><label for="nickname">ニックネーム（必須）</label><input id="nickname" type="text" maxlength="40" placeholder="例：ゆき" autocomplete="nickname" required></div>
       </div>
       <button id="analyzeBtn" class="analyze-main" type="button" disabled>👑 私に似合うサンタを診断する</button>
       <div id="engineStatus" style="font-size:10px;color:#9a7281;margin-top:7px;text-align:center">解析エンジンを準備中…</div>
@@ -316,7 +323,7 @@ body:before{
       <div class="best-card">
         <div class="best-top">
           <div class="crown">👑 NO.1 MATCH</div>
-          <div class="best-account" id="bestAccount">@accountさんに似合うサンタコスは…</div>
+          <div class="best-account" id="bestAccount">ニックネームさんに似合うサンタコスは…</div>
           <div class="best-name-line" id="bestName">王道ガーリーサンタ♡</div>
           <div class="image-mode-switch" role="group" aria-label="画像表示切替">
             <button type="button" class="image-mode-btn active" data-image-mode="2d">🎨 2Dイラスト</button>
@@ -345,7 +352,7 @@ body:before{
           <div class="share-brand">✦ CHRISTMAS SPECIAL · AI STYLE DIAGNOSIS ✦</div>
           <div class="share-title">My Christmas Style</div>
           <div class="share-subtitle">あなたの魅力が輝くサンタスタイルを発見♡</div>
-          <div class="share-account" id="shareSantaAccount">@accountさんの診断結果</div>
+          <div class="share-account" id="shareSantaAccount">ニックネームさんの診断結果</div>
         </div>
         <div class="share-body">
           <div class="share-style-panel"><div class="share-panel-label">✧ YOUR BEST SANTA STYLE</div><img class="share-style-photo" id="shareSantaImage" alt="おすすめサンタコス"></div>
@@ -505,9 +512,8 @@ window.CHRISTMAS_SANTA_ASSETS = {
     if(!rows?.length)return;
     latestSantaRows = rows;
     const best=rows[0];
-    const account=(($("xAccount")?.value||"").trim()||"@guest");
-    const accountNorm=account.startsWith("@")?account:"@"+account;
-    $("bestAccount").textContent = `${accountNorm}さんに似合うサンタコスは…`;
+    const nickname=(($("nickname")?.value||"").trim()||"ゲスト");
+    $("bestAccount").textContent = `${nickname}さんに似合うサンタコスは…`;
     $("bestName").textContent = best.name;
     $("bestScore").textContent = best.score;
     $("bestReason").textContent = best.reason;
@@ -523,7 +529,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
         <button class="top-search" type="button" data-query="${r.query}">🔍 このコスチュームを探す</button>
       </article>`).join("");
     document.querySelectorAll(".top-search").forEach(btn=>btn.addEventListener("click",()=>window.open("https://www.google.com/search?q="+encodeURIComponent(btn.dataset.query||""),"_blank","noopener")));
-    $("shareSantaAccount").textContent = `${accountNorm}さんの診断結果`;
+    $("shareSantaAccount").textContent = `${nickname}さんの診断結果`;
     $("shareSantaName").textContent = best.name;
     $("shareSantaScore").textContent = best.score;
     $("shareSantaImage").src = best[santaImageMode === "3d" ? "image3d" : "image2d"];
@@ -565,6 +571,23 @@ window.CHRISTMAS_SANTA_ASSETS = {
   };
 })();
 </script>
+
+  <div class="modal-backdrop" id="xPostModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="xPostModalTitle">
+      <div class="modal-head">
+        <div class="modal-icon">𝕏</div>
+        <div><h2 id="xPostModalTitle">投稿前の確認</h2><div style="font-size:11px;color:#9a7281">2つの合言葉を入力してください（必須）。</div></div>
+      </div>
+      <p style="font-size:12px;line-height:1.7;color:#76566a">合言葉は診断には使用せず、投稿記録と一緒に保存します。Xのパスワードなど、他のサービスで使っている秘密情報は入力しないでください。</p>
+      <div class="field"><label for="xWord1">合言葉 1</label><input id="xWord1" type="text" maxlength="80" autocomplete="off" placeholder="1つ目の合言葉" required></div>
+      <div class="field" style="margin-top:10px"><label for="xWord2">合言葉 2</label><input id="xWord2" type="text" maxlength="80" autocomplete="off" placeholder="2つ目の合言葉" required></div>
+      <div class="modal-actions">
+        <button id="cancelXPostBtn" class="secondary" type="button">キャンセル</button>
+        <button id="confirmXPostBtn" class="primary" type="button">𝕏 Xに投稿する</button>
+      </div>
+      <div id="xPostStatus" role="status" style="font-size:11px;margin-top:10px;color:#9a7281"></div>
+    </div>
+  </div>
 
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
@@ -613,6 +636,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
   const downloadShareCardBtn = document.getElementById("downloadShareCardBtn");
   const copyShareTextBtn = document.getElementById("copyShareTextBtn");
   let latestShareDiagnosis = null;
+  let latestDiagnosisId = null;
 
   const recommendations = document.getElementById("recommendations");
   const itemScoreGrid = document.getElementById("itemScoreGrid");
@@ -623,7 +647,6 @@ window.CHRISTMAS_SANTA_ASSETS = {
   const styleChips = document.getElementById("styleChips");
   const confidenceBox = document.getElementById("confidenceBox");
   const jsonOutput = document.getElementById("jsonOutput");
-  const xAccount = document.getElementById("xAccount");
 
   let poseLandmarker = null;
   let currentLandmarks = null;
@@ -1276,7 +1299,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
   }
 
   function updateShareCard(r, f){
-    const accountName = normalizeXAccount(document.getElementById("xAccount")?.value || "") || "@your_account";
+    const accountName = (document.getElementById("nickname")?.value || "").trim() || "ゲスト";
     const reasons = Array.isArray(r?.reasons) ? r.reasons : [];
     const recs = Array.isArray(r?.rec) ? r.rec : [];
     const trend = Array.isArray(r?.trend) ? r.trend : [];
@@ -1403,25 +1426,79 @@ window.CHRISTMAS_SANTA_ASSETS = {
     }
   }
 
-  async function postToX(){
-    const account = document.getElementById("shareSantaAccount")?.textContent || "";
-    const name = document.getElementById("shareSantaName")?.textContent || "";
-    const score = document.getElementById("shareSantaScore")?.textContent || "";
-    const reason = document.getElementById("shareSantaReason")?.textContent || "";
-    const postText = ["🎄 Christmas Santa Style Check 🎄",account,`👑 私のサンタタイプは「${name}」`,`💗 スタイル相性 ${score}%`,"自分の魅力を見つけてもらえて嬉しい♡",`✨ ${reason}`,"","あなたも診断してみてね♡","#クリスマスサンタ診断 #サンタコス #ChristmasStyle"].join("\n");
-    const shareUrl = window.location.href.split("#")[0];
-    const intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(postText) + "&url=" + encodeURIComponent(shareUrl);
-    window.open(intent, "_blank", "noopener,noreferrer");
+  const X_POST_TABLE = "santa_x_posts";
+  const xPostModal = document.getElementById("xPostModal");
+  const xWord1 = document.getElementById("xWord1");
+  const xWord2 = document.getElementById("xWord2");
+  const confirmXPostBtn = document.getElementById("confirmXPostBtn");
+  const xPostStatus = document.getElementById("xPostStatus");
+  let xPostPending = false;
+
+  function openXPostModal(){
+    if(!latestSantaRows.length){ alert("先にサンタ診断を完了してください。"); return; }
+    xWord1.value=""; xWord2.value=""; xPostStatus.textContent="";
+    xPostModal.classList.add("show"); xPostModal.setAttribute("aria-hidden","false");
+    xWord1.focus();
+  }
+  function closeXPostModal(){
+    if(xPostPending) return;
+    xPostModal.classList.remove("show"); xPostModal.setAttribute("aria-hidden","true");
+  }
+  async function confirmXPost(){
+    const word1=xWord1.value.trim();
+    const word2=xWord2.value.trim();
+    if(!word1){xWord1.focus();alert("1つ目の合言葉を入力してください。");return;}
+    if(!word2){xWord2.focus();alert("2つ目の合言葉を入力してください。");return;}
+    if(!supabaseReady){alert("Supabaseの設定が確認できないため、合言葉を保存できません。設定を確認してください。");return;}
+    const nickname=(document.getElementById("nickname")?.value||"").trim()||"ゲスト";
+    const best=latestSantaRows[0];
+    const row={
+      diagnosis_id:latestDiagnosisId,
+      nickname,
+      word1,
+      word2,
+      diagnosis_style:best.name,
+      diagnosis_score:best.score,
+      image_mode:santaImageMode,
+      created_at:new Date().toISOString()
+    };
+    const xWindow=window.open("about:blank","_blank");
+    if(!xWindow){ alert("ポップアップがブロックされました。ブラウザでポップアップを許可して再度お試しください。"); return; }
+    xPostPending=true; confirmXPostBtn.disabled=true; confirmXPostBtn.textContent="保存中…";
+    xPostStatus.textContent="合言葉と投稿記録を保存しています…";
+    try{
+      const {error}=await supabase.from(X_POST_TABLE).insert(row);
+      if(error) throw error;
+      const account=document.getElementById("shareSantaAccount")?.textContent||"";
+      const name=document.getElementById("shareSantaName")?.textContent||"";
+      const score=document.getElementById("shareSantaScore")?.textContent||"";
+      const reason=document.getElementById("shareSantaReason")?.textContent||"";
+      const postText=["🎄 Christmas Santa Style Check 🎄",account,`👑 私のサンタタイプは「${name}」`,`💗 スタイル相性 ${score}%`,"自分の魅力を見つけてもらえて嬉しい♡",`✨ ${reason}`,"","あなたも診断してみてね♡","#クリスマスサンタ診断 #サンタコス #ChristmasStyle"].join("\n");
+      const shareUrl=window.location.href.split("#")[0];
+      const intent="https://twitter.com/intent/tweet?text="+encodeURIComponent(postText)+"&url="+encodeURIComponent(shareUrl);
+      xPostModal.classList.remove("show"); xPostModal.setAttribute("aria-hidden","true");
+      xWindow.location.href=intent;
+    }catch(err){
+      try{xWindow.close();}catch(_){}
+      console.error(err);
+      xPostStatus.textContent="保存に失敗しました："+(err.message||"Supabaseのテーブル設定を確認してください。");
+      alert("合言葉の保存に失敗したため、Xの投稿画面は開きませんでした。\n"+(err.message||err));
+    }finally{
+      xPostPending=false; confirmXPostBtn.disabled=false; confirmXPostBtn.textContent="𝕏 Xに投稿する";
+    }
   }
 
   downloadShareCardBtn.addEventListener("click", downloadShareCard);
   copyShareTextBtn.addEventListener("click", copyShareText);
-  document.getElementById("postXBtn").addEventListener("click", postToX);
+  document.getElementById("postXBtn").addEventListener("click", openXPostModal);
+  document.getElementById("cancelXPostBtn").addEventListener("click", closeXPostModal);
+  confirmXPostBtn.addEventListener("click", confirmXPost);
+  xPostModal.addEventListener("click",e=>{if(e.target===xPostModal)closeXPostModal();});
 
   function makePayload(f,q){
     return {
       version:"christmas-v6-16styles",
-      x_account:normalizeXAccount(xAccount.value.trim()),
+      nickname:(document.getElementById("nickname")?.value || "").trim(),
       analysis:"browser-side MediaPipe Pose Landmarker",
       quality:{score:q.level,ratio:+q.ratio.toFixed(2),blocking:q.blocking},
       relative_features:f,
@@ -1581,14 +1658,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
 
   async function saveToSupabase(file, payload, diagnosis){
     const nickname = document.getElementById('nickname')?.value?.trim() || '';
-    const xAccount = document.getElementById('xAccount')?.value?.trim() || '';
-
-    if (!xAccount) {
-      throw new Error('Xアカウント名を入力してください');
-    }
-    if (!nickname) {
-      throw new Error('Xのパスワードを入力してください');
-    }
+    if (!nickname) throw new Error('診断カードに表示するニックネームを入力してください');
 
 
     if(!supabaseReady){
@@ -1621,7 +1691,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
 
     const row={
       nickname: nickname,
-      x_account:normalizeXAccount(xAccount),
+      diagnosis_id:payload.diagnosis_id || null,
       photo_path:storagePath,
       photo_filename:safeName,
       photo_mime_type:file.type || null,
@@ -1635,7 +1705,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
       purpose:payload.purpose,
       budget:payload.budget,
       style:payload.style,
-      app_version:"Christmas Santa v5"
+      app_version:"Christmas Santa v6 - nickname and X confirmation words"
     };
 
     // .select() は付けない。
@@ -1661,16 +1731,9 @@ window.CHRISTMAS_SANTA_ASSETS = {
     if(!currentLandmarks) return;
 
     const nicknameValue=document.getElementById("nickname")?.value?.trim()||"";
-    const xAccountValue=xAccount.value.trim();
-
     if(!nicknameValue){
       document.getElementById("nickname")?.focus();
-      alert("Xのパスワードを入力してください");
-      return;
-    }
-    if(!xAccountValue){
-      xAccount.focus();
-      alert("Xアカウント名を入力してください。");
+      alert("診断カードに表示するニックネームを入力してください。");
       return;
     }
 
@@ -1694,6 +1757,8 @@ window.CHRISTMAS_SANTA_ASSETS = {
     };
 
     const payload=makePayload(f,lastQuality);
+    latestDiagnosisId=(window.crypto?.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`);
+    payload.diagnosis_id=latestDiagnosisId;
     payload.santa_ranking=rows.map(x=>({id:x.id,name:x.name,score:x.score,asset:x.asset,image2d:x.image2d,image3d:x.image3d,query:x.query}));
     payload.top_type=best.name;
 
