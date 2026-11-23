@@ -242,6 +242,8 @@ body:before{
   .ribbon{font-size:16px;padding:9px 18px}.top5-grid{gap:7px}.top-card{border-radius:17px;padding:5px}.top-card h3{font-size:9px}.top-score{font-size:17px}.top-search{font-size:8px;padding:8px 2px}
   .share-body img{height:auto;min-height:0;max-height:none;aspect-ratio:7 / 10}.share-info h2{font-size:23px}.share-share-score{font-size:40px}
 }
+
+.image-mode-switch{display:flex;justify-content:center;gap:8px;margin:12px auto 8px}.image-mode-btn{border:1px solid #e7b5c9;background:#fff7fa;color:#9b4668;border-radius:999px;padding:8px 14px;font-weight:800;font-size:12px;cursor:pointer}.image-mode-btn.active{background:#b52f68;color:#fff;border-color:#b52f68}.best-visual img{object-fit:contain}
 </style>
 </head>
 
@@ -316,6 +318,10 @@ body:before{
           <div class="crown">👑 NO.1 MATCH</div>
           <div class="best-account" id="bestAccount">@accountさんに似合うサンタコスは…</div>
           <div class="best-name-line" id="bestName">王道ガーリーサンタ♡</div>
+          <div class="image-mode-switch" role="group" aria-label="画像表示切替">
+            <button type="button" class="image-mode-btn active" data-image-mode="2d">🎨 2Dイラスト</button>
+            <button type="button" class="image-mode-btn" data-image-mode="3d">✨ 3Dリアル</button>
+          </div>
           <div class="best-visual"><img id="bestImage" alt="一番似合いやすいサンタコス"></div>
           <div class="best-score"><span id="bestScore">96</span>% <small>似合いやすさ</small></div>
           <div class="reason-box"><strong>⭐ このスタイルが似合う理由</strong><p id="bestReason"></p></div>
@@ -406,7 +412,24 @@ body:before{
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <script>
-window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/01_王道ガーリーサンタ.webp","02_ふわもこケープサンタ":"assets/santa/02_ふわもこケープサンタ.webp","03_フレアスカートサンタ":"assets/santa/03_フレアスカートサンタ.webp","04_フィットアンドフレアサンタ":"assets/santa/04_フィットアンドフレアサンタ.webp","05_ショートジャケットサンタ":"assets/santa/05_ショートジャケットサンタ.webp","06_ロングワンピースサンタ":"assets/santa/06_ロングワンピースサンタ.webp","07_ふわもこオーバーサンタ":"assets/santa/07_ふわもこオーバーサンタ.webp","08_クラシックサンタ":"assets/santa/08_クラシックサンタ.webp","09_セクシーサンタ":"assets/santa/09_セクシーサンタ.webp","10_エレガントサンタ":"assets/santa/10_エレガントサンタ.webp"};
+window.CHRISTMAS_SANTA_ASSETS = {
+  "01": { "2d": "assets/santa/01_クラシックサンタ_2d.jpg", "3d": "assets/santa/01_クラシックサンタ_3d.jpg" },
+  "02": { "2d": "assets/santa/02_ケープサンタ_2d.jpg", "3d": "assets/santa/02_ケープサンタ_3d.jpg" },
+  "03": { "2d": "assets/santa/03_ロングドレスサンタ_2d.jpg", "3d": "assets/santa/03_ロングドレスサンタ_3d.jpg" },
+  "04": { "2d": "assets/santa/04_ふわもこオーバーサンタ_2d.jpg", "3d": "assets/santa/04_ふわもこオーバーサンタ_3d.jpg" },
+  "05": { "2d": "assets/santa/05_ショートジャケットサンタ_2d.jpg", "3d": "assets/santa/05_ショートジャケットサンタ_3d.jpg" },
+  "06": { "2d": "assets/santa/06_セットアップサンタ_2d.jpg", "3d": "assets/santa/06_セットアップサンタ_3d.jpg" },
+  "07": { "2d": "assets/santa/07_チェック柄サンタ_2d.jpg", "3d": "assets/santa/07_チェック柄サンタ_3d.jpg" },
+  "08": { "2d": "assets/santa/08_ニットサンタ_2d.jpg", "3d": "assets/santa/08_ニットサンタ_3d.jpg" },
+  "09": { "2d": "assets/santa/09_ルームウェアサンタ_2d.jpg", "3d": "assets/santa/09_ルームウェアサンタ_3d.jpg" },
+  "10": { "2d": "assets/santa/10_ブラックサンタ_2d.jpg", "3d": "assets/santa/10_ブラックサンタ_3d.jpg" },
+  "11": { "2d": "assets/santa/11_エレガントサンタ_2d.jpg", "3d": "assets/santa/11_エレガントサンタ_3d.jpg" },
+  "12": { "2d": "assets/santa/12_華やかサンタ_2d.jpg", "3d": "assets/santa/12_華やかサンタ_3d.jpg" },
+  "13": { "2d": "assets/santa/13_タータンチェックドレスサンタ_2d.jpg", "3d": "assets/santa/13_タータンチェックドレスサンタ_3d.jpg" },
+  "14": { "2d": "assets/santa/14_ポンポンパンツサンタ_2d.jpg", "3d": "assets/santa/14_ポンポンパンツサンタ_3d.jpg" },
+  "15": { "2d": "assets/santa/15_ゴシックブラックサンタ_2d.jpg", "3d": "assets/santa/15_ゴシックブラックサンタ_3d.jpg" },
+  "16": { "2d": "assets/santa/16_パンツスタイルサンタ_2d.jpg", "3d": "assets/santa/16_パンツスタイルサンタ_3d.jpg" }
+};
 
 (() => {
   // 数値を指定範囲内に収める共通関数（このスクリプト内で使用）
@@ -462,79 +485,82 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
     setTimeout(()=>namePanel.scrollIntoView({behavior:"smooth",block:"center"}),100);
   });
 
+  let santaImageMode = "2d";
+  let latestSantaRows = [];
+  function applySantaImageMode(mode){
+    santaImageMode = mode === "3d" ? "3d" : "2d";
+    document.querySelectorAll(".image-mode-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.imageMode===santaImageMode));
+    if(!latestSantaRows.length) return;
+    const best=latestSantaRows[0];
+    $("bestImage").src = best[santaImageMode === "3d" ? "image3d" : "image2d"];
+    $("shareSantaImage").src = best[santaImageMode === "3d" ? "image3d" : "image2d"];
+    document.querySelectorAll("#santaTop5Grid img[data-santa-id]").forEach(img=>{
+      const row=latestSantaRows.find(x=>String(x.id)===img.dataset.santaId);
+      if(row) img.src=row[santaImageMode === "3d" ? "image3d" : "image2d"];
+    });
+  }
+  document.querySelectorAll(".image-mode-btn").forEach(btn=>btn.addEventListener("click",()=>applySantaImageMode(btn.dataset.imageMode)));
+
   window.renderChristmasSanta = function(rows){
     if(!rows?.length)return;
+    latestSantaRows = rows;
     const best=rows[0];
     const account=(($("xAccount")?.value||"").trim()||"@guest");
     const accountNorm=account.startsWith("@")?account:"@"+account;
-
     $("bestAccount").textContent = `${accountNorm}さんに似合うサンタコスは…`;
     $("bestName").textContent = best.name;
     $("bestScore").textContent = best.score;
     $("bestReason").textContent = best.reason;
-    $("bestImage").src = best.image || window.CHRISTMAS_SANTA_ASSETS[best.asset];
-
+    $("bestImage").src = best[santaImageMode === "3d" ? "image3d" : "image2d"];
     $("resultUserPhoto").src = preview.src;
-
-    $("bestSearch").onclick = () => {
-      window.open("https://www.google.com/search?q="+encodeURIComponent(best.query),"_blank","noopener");
-    };
-
+    $("bestSearch").onclick = () => window.open("https://www.google.com/search?q="+encodeURIComponent(best.query),"_blank","noopener");
     $("santaTop5Grid").innerHTML = rows.slice(0,5).map((r,i)=>`
       <article class="top-card">
         <div class="rank ${i===0?"r1":i===1?"r2":i===2?"r3":""}">${i+1}</div>
-        <img src="${r.image || window.CHRISTMAS_SANTA_ASSETS[r.asset]}" alt="${r.name}">
+        <img data-santa-id="${r.id}" src="${r[santaImageMode === "3d" ? "image3d" : "image2d"]}" alt="${r.name}">
         <h3>${r.name}</h3>
         <div class="top-score">${r.score}% <small>似合いやすさ</small></div>
         <button class="top-search" type="button" data-query="${r.query}">🔍 このコスチュームを探す</button>
-      </article>
-    `).join("");
-
-    document.querySelectorAll(".top-search").forEach(btn=>{
-      btn.addEventListener("click",()=>{
-        window.open("https://www.google.com/search?q="+encodeURIComponent(btn.dataset.query||""),"_blank","noopener");
-      });
-    });
-
+      </article>`).join("");
+    document.querySelectorAll(".top-search").forEach(btn=>btn.addEventListener("click",()=>window.open("https://www.google.com/search?q="+encodeURIComponent(btn.dataset.query||""),"_blank","noopener")));
     $("shareSantaAccount").textContent = `${accountNorm}さんの診断結果`;
     $("shareSantaName").textContent = best.name;
     $("shareSantaScore").textContent = best.score;
-    $("shareSantaImage").src = best.image || window.CHRISTMAS_SANTA_ASSETS[best.asset];
+    $("shareSantaImage").src = best[santaImageMode === "3d" ? "image3d" : "image2d"];
     $("shareSantaReason").textContent = best.reason;
-
     result.style.display="block";
   };
 
   window.makeChristmasSantaRows = function(f){
-    // 10種類の「サンタコス × AIモデル画像」を1つのデータとして管理。
-    // 順位・スコア・画像・検索ワードは同じデータから表示します。
+    // 骨格比率4項目から、衣装デザインごとの相性を推定するヒューリスティック。
+    // 医学的・専門的な骨格診断ではなく、ファッション提案用の目安です。
     const types=[
-      {id:1,name:"王道ガーリーサンタ",asset:"01_王道ガーリーサンタ",ideal:[.98,.55,.30,.70],query:"王道ガーリーサンタ コスプレ レディース",reason:"ウエストラインを自然に引き立て、ふんわり広がるスカートで全身のシルエットにメリハリを作りやすいデザイン♡ 上半身はすっきり、スカートは軽やかに広がるので、可愛らしさと華やかさをどちらも楽しめます。友達とのクリスマスパーティーでは、みんなで盛り上がる明るい雰囲気にぴったり。いつもより少し特別な自分で、笑顔いっぱいの時間を過ごせそうです♡"},
-      {id:2,name:"ふわもこケープサンタ",asset:"02_ふわもこケープサンタ",ideal:[.94,.49,.32,.78],query:"ふわもこケープサンタ コスプレ レディース",reason:"肩まわりをふんわり包むケープが上半身にやさしいボリュームを添え、縦のラインが全体をすっきりまとめてくれます♡ 顔まわりまで柔らかな印象になるので、親しみやすくあたたかな雰囲気が魅力。友達とのパーティーでも自然と会話が弾み、大切な人と過ごす時間にも、優しい可愛らしさを届けられるスタイルです。"},
-      {id:3,name:"フレアスカートサンタ",asset:"03_フレアスカートサンタ",ideal:[1.04,.50,.31,.80],query:"フレアスカートサンタ コスプレ レディース",reason:"コンパクトなトップスと裾に向かって広がるフレアスカートで、上半身とボトムに自然なメリハリが生まれるデザイン♡ 動くたびにスカートがふわっと揺れ、軽やかでいきいきとした印象に。クリスマスパーティーで音楽やゲームを楽しむときも気分が弾み、いつもの自分らしい笑顔で過ごせそうです。"},
-      {id:4,name:"フィット＆フレアサンタ",asset:"04_フィットアンドフレアサンタ",ideal:[1.00,.53,.30,.68],query:"フィット＆フレアサンタ コスプレ レディース",reason:"身体にほどよく沿うトップスと、ウエストから広がるスカートの組み合わせが、ラインを自然に引き立ててくれます♡ すっきり感と華やかさを両立できるので、自分らしいバランスを楽しみたい方にぴったり。友達との集まりでは上品な存在感を添え、大切な人とのクリスマスには、少し特別で自信の持てる装いになりそうです。"},
-      {id:5,name:"ショートジャケットサンタ",asset:"05_ショートジャケットサンタ",ideal:[1.06,.55,.28,.76],query:"ショートジャケットサンタ コスプレ レディース",reason:"短め丈のジャケットが上半身をコンパクトにまとめ、ウエスト位置を高く見せやすいデザイン♡ きちんと感のあるシルエットにファーやリボンの可愛さが加わり、甘すぎない華やかさを楽しめます。友達とのパーティーでも程よくおしゃれで、いつもと違う頼もしい自分を演出しながら、心弾む時間を過ごせそうです。"},
-      {id:6,name:"ロングワンピースサンタ",asset:"06_ロングワンピースサンタ",ideal:[.98,.48,.36,.82],query:"ロングワンピースサンタ コスプレ レディース",reason:"ロング丈ならではの縦長ラインが、落ち着いた華やかさと優雅な雰囲気を生み出すワンピースタイプ♡ 身体のラインを強調しすぎず、全体をすらりとまとめたいときにもおすすめ。ゆっくり食事を楽しむクリスマスディナーや、大切な人との穏やかな時間に、上品で印象に残る装いを添えてくれます。"},
-      {id:7,name:"ふわもこオーバーサンタ",asset:"07_ふわもこオーバーサンタ",ideal:[.95,.47,.33,.88],query:"ふわもこオーバーサンタ コスプレ レディース",reason:"ふわふわのファーとゆったりしたシルエットで、冬らしい愛らしさをたっぷり楽しめるタイプ♡ 身体を締めつけにくいリラックス感があり、柔らかく親しみやすい雰囲気を演出できます。おうちでのクリスマス会や友達とのプレゼント交換にもぴったり。気取らず自然体で、みんなと笑い合える心地よい時間になりそうです。"},
-      {id:8,name:"クラシックサンタ",asset:"08_クラシックサンタ",ideal:[.99,.51,.32,.76],query:"クラシックサンタ コスプレ レディース",reason:"赤と白の配色をすっきりまとめた、飽きのこない王道のサンタスタイル♡ 帽子やベルト、白いファーなどの定番ディテールが全体を引き締め、バランスよくまとまります。クリスマスらしさを大切にしたいパーティーにぴったりで、友達にも親しみやすい印象。みんなで季節のイベントを楽しむ気分を盛り上げてくれます。"},
-      {id:9,name:"セクシーサンタ",asset:"09_セクシーサンタ",ideal:[1.02,.56,.28,.66],query:"セクシーサンタ コスプレ レディース",reason:"ウエストまわりから脚までのシルエットにポイントを置いた、華やかで存在感のあるデザイン♡ コンパクトなラインが全体をすっきり見せ、いつもとは違う雰囲気に挑戦したい気分にも応えてくれます。自分が心地よく楽しめる着こなしに整えれば、特別なクリスマスの集まりで気分も上がり、自分らしい魅力を前向きに楽しめます。"},
-      {id:10,name:"エレガントサンタ",asset:"10_エレガントサンタ",ideal:[1.00,.49,.35,.74],query:"エレガントサンタ コスプレ レディース",reason:"ロング丈の優雅なラインと、大きめリボンなどの上品なアクセントが魅力のエレガントスタイル♡ 縦の流れを意識したシルエットが落ち着いた印象にまとめ、ファーやリボンがクリスマスらしい華やかさを添えます。少し特別なディナーや大切な人との時間にぴったり。背伸びしすぎず、自分の上品な魅力を楽しめる一着です。"}
+      {id:1,name:"クラシックサンタ",asset:"01",ideal:[.99,.51,.32,.76],query:"クラシックサンタ コスプレ レディース",reason:"赤い定番ワンピースに白いファーやベルトを合わせた、王道のサンタスタイル。装飾のバランスが取りやすく、クリスマスらしさを楽しめるデザインです。"},
+      {id:2,name:"ケープサンタ",asset:"02",ideal:[.96,.49,.33,.80],query:"ケープサンタ コスプレ レディース",reason:"肩から広がるケープが主役。顔まわりと上半身に柔らかなボリュームを添える、羽織りの存在感を楽しむスタイルです。"},
+      {id:3,name:"ロングドレスサンタ",asset:"03",ideal:[.99,.49,.36,.78],query:"ロングドレス サンタ コスプレ レディース",reason:"足元まで続くロング丈と縦のラインが特徴。落ち着いた華やかさがあり、特別なディナーにも合わせやすいデザインです。"},
+      {id:4,name:"ふわもこオーバーサンタ",asset:"04",ideal:[.98,.48,.34,.88],query:"ふわもこ オーバーサイズ サンタ コスプレ レディース",reason:"厚手のふわもこ素材とゆったりしたシルエットが主役。おうちクリスマスにも似合う、リラックス感のあるスタイルです。"},
+      {id:5,name:"ショートジャケットサンタ",asset:"05",ideal:[1.04,.54,.29,.75],query:"ショートジャケット サンタ コスプレ レディース",reason:"短め丈のジャケットが特徴。上着の裾位置や襟元のデザインで、きちんと感と軽快さを両立できます。"},
+      {id:6,name:"セットアップサンタ",asset:"06",ideal:[1.00,.52,.31,.76],query:"サンタ セットアップ トップス スカート レディース",reason:"トップスとスカートを組み合わせた上下別デザイン。配色や丈の組み合わせで、自分らしい着こなしを作りやすいタイプです。"},
+      {id:7,name:"チェック柄サンタ",asset:"07",ideal:[1.02,.53,.30,.73],query:"チェック柄 制服風 サンタ コスプレ レディース",reason:"チェック柄と制服風ディテールが主役。柄のリズムとジャケット・スカートの組み合わせで、ポップな印象を楽しめます。"},
+      {id:8,name:"ニットサンタ",asset:"08",ideal:[1.00,.50,.34,.82],query:"ニット サンタ コスプレ レディース",reason:"ケーブル編みなどニットならではの凹凸と柔らかな素材感が魅力。冬らしい温かみを取り入れたスタイルです。"},
+      {id:9,name:"ルームウェアサンタ",asset:"09",ideal:[.99,.49,.34,.86],query:"サンタ ルームウェア レディース",reason:"締めつけの少ないリラックスシルエット。おうちで過ごすクリスマスや、くつろいだパーティーに向いたデザインです。"},
+      {id:10,name:"ブラックサンタ",asset:"10",ideal:[1.02,.53,.30,.73],query:"ブラックサンタ コスプレ レディース",reason:"黒を基調に赤や白をアクセントにしたクールな配色。定番のサンタスタイルを落ち着いた印象にアレンジできます。"},
+      {id:11,name:"エレガントサンタ",asset:"11",ideal:[1.00,.50,.35,.77],query:"ベロア エレガント サンタ コスプレ レディース",reason:"ベロアや繊細な装飾、上品なシルエットが特徴。素材の質感と控えめな華やかさを楽しめるスタイルです。"},
+      {id:12,name:"華やかサンタ",asset:"12",ideal:[1.02,.52,.31,.71],query:"華やか 豪華 サンタ コスプレ レディース",reason:"リボンやフリル、装飾を重ねたデザイン性の高い衣装。イベントで印象的なコーディネートを楽しみたいときにぴったりです。"},
+      {id:13,name:"タータンチェックドレスサンタ",asset:"13",ideal:[1.03,.54,.29,.70],query:"タータンチェック ドレス サンタ コスプレ レディース",reason:"赤黒タータンチェックを主役にしたドレス。チェック柄サンタよりもワンピースらしい仕立てとコルセット風ディテールを重視したデザインです。"},
+      {id:14,name:"ポンポンパンツサンタ",asset:"14",ideal:[.99,.49,.34,.84],query:"ポンポン パンツスタイル サンタ コスプレ レディース",reason:"トップスとゆったりしたパンツにポンポンなどの遊び心を加えたスタイル。動きやすさと可愛らしさを両立します。"},
+      {id:15,name:"ゴシックブラックサンタ",asset:"15",ideal:[1.02,.52,.31,.70],query:"ゴシック ブラック レッド サンタ コスプレ レディース",reason:"黒をベースに赤いフリルや編み上げを組み合わせたゴシック調。シンプルなブラックサンタとは異なる装飾性が魅力です。"},
+      {id:16,name:"パンツスタイルサンタ",asset:"16",ideal:[1.00,.52,.32,.78],query:"サンタ パンツスタイル ジャケット レディース",reason:"ジャケットや長ズボンを取り入れたすっきりしたパンツスタイル。スカート以外のサンタコーデを楽しみたい人に向いたデザインです。"}
     ];
-
-    const v=[
-      Number(f?.shoulderHip||1),
-      Number(f?.legRatio||.5),
-      Number(f?.torsoRatio||.3),
-      Number(f?.waistHip||.8)
-    ];
+    const v=[Number(f?.shoulderHip ?? 1),Number(f?.legRatio ?? .5),Number(f?.torsoRatio ?? .3),Number(f?.waistHip ?? .8)];
     const scales=[.20,.12,.12,.20];
     const weights=[.30,.25,.20,.25];
     const sim=(a,b,s)=>Math.max(0,1-Math.min(1,Math.abs(a-b)/s));
-
     return types.map(t=>{
       const raw=t.ideal.reduce((sum,b,i)=>sum+sim(v[i],b,scales[i])*weights[i],0);
       const score=clamp(Math.round(70+raw*28),70,98);
-      return {...t,score,image:window.CHRISTMAS_SANTA_ASSETS[t.asset]};
+      const paths=window.CHRISTMAS_SANTA_ASSETS[t.asset];
+      return {...t,score,image2d:paths["2d"],image3d:paths["3d"],image:paths[santaImageMode]};
     }).sort((a,b)=>b.score-a.score || a.id-b.id);
   };
 })();
@@ -1394,7 +1420,7 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
 
   function makePayload(f,q){
     return {
-      version:"christmas-v4",
+      version:"christmas-v6-16styles",
       x_account:normalizeXAccount(xAccount.value.trim()),
       analysis:"browser-side MediaPipe Pose Landmarker",
       quality:{score:q.level,ratio:+q.ratio.toFixed(2),blocking:q.blocking},
@@ -1668,7 +1694,7 @@ window.CHRISTMAS_SANTA_ASSETS = {"01_王道ガーリーサンタ":"assets/santa/
     };
 
     const payload=makePayload(f,lastQuality);
-    payload.santa_ranking=rows.map(x=>({id:x.id,name:x.name,score:x.score,asset:x.asset,image:x.image,query:x.query}));
+    payload.santa_ranking=rows.map(x=>({id:x.id,name:x.name,score:x.score,asset:x.asset,image2d:x.image2d,image3d:x.image3d,query:x.query}));
     payload.top_type=best.name;
 
     analyzeBtn.disabled=true;
