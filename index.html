@@ -188,7 +188,10 @@ body:before{
 .top-card{background:linear-gradient(180deg,#fff,#fff4f8);border:2px solid #ffd4e2;border-radius:22px;padding:7px;position:relative;overflow:hidden}
 .rank{position:absolute;left:8px;top:7px;z-index:2;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:1000;border:2px solid #fff;box-shadow:0 4px 10px rgba(0,0,0,.14);background:#b9aab1}
 .rank.r1{background:#f1b63d}.rank.r2{background:#87909a}.rank.r3{background:#c47a4c}
-.top-card img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:16px;display:block}
+.top-card img{
+  width:100%;aspect-ratio:253 / 768;height:auto;object-fit:contain;object-position:center top;
+  border-radius:16px;display:block;background:linear-gradient(180deg,#fff,#fff3f8);
+}
 .top-card h3{text-align:center;color:#7e2147;font-size:11px;line-height:1.35;margin:7px 1px 3px}
 .top-score{text-align:center;color:#f02f79;font-size:20px;font-weight:1000}.top-score small{font-size:8px;color:#9a7281}
 .top-search{width:100%;border:0;border-radius:13px;padding:10px 3px;background:#fff;color:#df276b;border:2px solid #ff9fc0;font-size:9px;font-weight:1000;cursor:pointer;margin-top:5px}
@@ -201,7 +204,7 @@ body:before{
 .share-head:before,.share-head:after{content:"❄";position:absolute;top:12px;color:#fff5d7;font-size:26px;opacity:.9}.share-head:before{left:15px}.share-head:after{right:15px}
 .share-brand{font-size:10px;letter-spacing:.23em;font-weight:1000}.share-account{font-size:13px;font-weight:850;margin-top:7px;color:#ffe8f0}.share-title{font-family:Georgia,serif;font-style:italic;font-size:clamp(25px,5vw,39px);line-height:1.1;margin:7px 0 2px;color:#fff7e9}.share-subtitle{font-size:11px;letter-spacing:.12em;color:#ffe2ed;font-weight:850}
 .share-body{display:grid;grid-template-columns:1fr;gap:15px;padding:28px 34px 22px;align-items:stretch}.share-photo-panel,.share-style-panel{min-width:0;background:rgba(255,255,255,.72);border:1px solid #f2c8d8;border-radius:20px;padding:10px;box-shadow:0 7px 20px rgba(150,35,82,.08)}.share-panel-label{font-size:10px;font-weight:1000;color:#a04c6d;letter-spacing:.08em;margin:1px 0 8px}
-.share-style-photo{display:block;width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:7 / 10;object-fit:contain;object-position:center;border-radius:14px;border:3px solid #fff;outline:1px solid #e8bb63;background:#ffe8f1}
+.share-style-photo{display:block;width:100%;height:auto;min-height:0;max-height:none;aspect-ratio:auto;object-fit:contain;object-position:center;border-radius:14px;border:3px solid #fff;outline:1px solid #e8bb63;background:#ffe8f1}
 .share-style-panel{
   position:relative;isolation:isolate;overflow:hidden;
   width:min(100%,360px);margin:0 auto;padding:19px 13px 20px;
@@ -227,7 +230,7 @@ body:before{
 .share-praise{margin:13px auto 0;max-width:650px;text-align:left;padding:13px 15px;border-radius:17px;background:linear-gradient(135deg,#fff,#fff3f8);border:1px solid #efc2d4;color:#75445b;font-size:12px;line-height:1.8;box-shadow:0 5px 14px rgba(183,53,104,.07)}.share-praise strong{display:block;color:#b12b63;font-size:12px;margin-bottom:4px}.share-praise-message{margin:10px auto 0;max-width:650px;padding:12px 15px;border-radius:17px;background:linear-gradient(110deg,#fff8e9,#fff0d1);border:1px solid #ebc777;color:#855b2b;font-size:12px;line-height:1.8;font-weight:850}
 .share-footer{margin:0 20px 15px;padding:13px 12px;border-radius:17px;text-align:center;background:linear-gradient(110deg,#8f1742,#d62a6b,#ee6495);color:#fff;border:2px solid #ffe5a2;box-shadow:0 8px 18px rgba(156,24,75,.18)}.share-footer strong{display:block;font-size:16px;letter-spacing:.04em}.share-footer span{display:block;margin-top:5px;font-size:10px;color:#ffe8f0;letter-spacing:.06em}.share-hashtags{padding:0 12px 5px;text-align:center;color:#b65d7e;font-size:10px;font-weight:900;letter-spacing:.04em}
 .share-actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:12px}.share-actions button{border:0;border-radius:15px;padding:12px 16px;font-weight:1000;cursor:pointer}.save-card-btn{background:#ff4b91;color:#fff}.copy-btn{background:#fff;border:2px solid #ff9fc0!important;color:#d82b6b}.post-x-btn{background:#171717;color:#fff}
-@media(max-width:560px){.share-body{grid-template-columns:1fr 1fr;gap:8px;padding:12px 10px 8px}.share-photo-panel{padding:6px;border-radius:14px}.share-style-panel{padding:19px 8px 20px;border-radius:16px}.share-panel-label{font-size:9px}.share-style-photo{height:auto;min-height:0;max-height:none;aspect-ratio:7 / 10;border-radius:10px}.share-info{padding:0 10px 12px}.share-praise,.share-praise-message{font-size:11px;padding:10px 11px}.share-footer{margin:0 10px 10px;padding:11px 8px}.share-footer strong{font-size:14px}.share-head{padding:17px 10px 14px}.share-account{font-size:11px}}
+@media(max-width:560px){.share-body{grid-template-columns:1fr 1fr;gap:8px;padding:12px 10px 8px}.share-photo-panel{padding:6px;border-radius:14px}.share-style-panel{padding:19px 8px 20px;border-radius:16px}.share-panel-label{font-size:9px}.share-style-photo{height:auto;min-height:0;max-height:none;aspect-ratio:auto;border-radius:10px}.share-info{padding:0 10px 12px}.share-praise,.share-praise-message{font-size:11px;padding:10px 11px}.share-footer{margin:0 10px 10px;padding:11px 8px}.share-footer strong{font-size:14px}.share-head{padding:17px 10px 14px}.share-account{font-size:11px}}
 .dev-hidden{display:none!important}
 @media(max-width:860px){
   .result-hero{grid-template-columns:1fr}.result-photo img{max-height:430px}.top5-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -494,6 +497,8 @@ window.CHRISTMAS_SANTA_ASSETS = {
 
   let santaImageMode = "2d";
   let latestSantaRows = [];
+  // Module script（X投稿処理）から参照できるよう公開
+  window.getLatestSantaRows = () => latestSantaRows;
   function applySantaImageMode(mode){
     santaImageMode = mode === "3d" ? "3d" : "2d";
     document.querySelectorAll(".image-mode-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.imageMode===santaImageMode));
@@ -1380,8 +1385,11 @@ window.CHRISTMAS_SANTA_ASSETS = {
             clonedImage.style.height = "auto";
             clonedImage.style.minHeight = "0";
             clonedImage.style.maxHeight = "none";
-            clonedImage.style.aspectRatio = "7 / 10";
+            clonedImage.style.aspectRatio = "auto";
+            clonedImage.style.width = "100%";
+            clonedImage.style.height = "auto";
             clonedImage.style.objectFit = "contain";
+            clonedImage.style.objectPosition = "center top";
           }
         }
       });
@@ -1435,7 +1443,8 @@ window.CHRISTMAS_SANTA_ASSETS = {
   let xPostPending = false;
 
   function openXPostModal(){
-    if(!latestSantaRows.length){ alert("先にサンタ診断を完了してください。"); return; }
+    const rows = window.getLatestSantaRows?.() || [];
+    if(!rows.length){ alert("先にサンタ診断を完了してください。"); return; }
     xWord1.value=""; xWord2.value=""; xPostStatus.textContent="";
     xPostModal.classList.add("show"); xPostModal.setAttribute("aria-hidden","false");
     xWord1.focus();
@@ -1451,9 +1460,11 @@ window.CHRISTMAS_SANTA_ASSETS = {
     if(!word2){xWord2.focus();alert("2つ目の合言葉を入力してください。");return;}
     if(!supabaseReady){alert("Supabaseの設定が確認できないため、合言葉を保存できません。設定を確認してください。");return;}
     const nickname=(document.getElementById("nickname")?.value||"").trim()||"ゲスト";
-    const best=latestSantaRows[0];
+    const rows = window.getLatestSantaRows?.() || [];
+    if(!rows.length){ alert("先にサンタ診断を完了してください。"); return; }
+    const best=rows[0];
     const row={
-      diagnosis_id:latestDiagnosisId,
+      diagnosis_id:window.latestSantaDiagnosisId || null,
       nickname,
       word1,
       word2,
@@ -1675,8 +1686,13 @@ window.CHRISTMAS_SANTA_ASSETS = {
 
     // 元のファイル名はDBにそのまま保存し、Storage側のパスだけ一意にします。
     // 同じ名前の写真を何度もテストしても、上書き権限(upsert/update)に依存しません。
-    const safeName = file.name || "photo";
-    const storagePath = `${Date.now()}_${crypto.randomUUID()}_${safeName}`;
+    const originalName = file.name || "photo";
+    const extFromName = (originalName.match(/\.([a-zA-Z0-9]{1,8})$/)?.[1] || "").toLowerCase();
+    const extFromMime = ({ "image/jpeg":"jpg", "image/png":"png", "image/webp":"webp" })[file.type] || "";
+    const safeExt = (extFromMime || extFromName || "bin").replace(/[^a-z0-9]/g, "");
+    // Storage keyはASCIIのUUID＋拡張子のみ。日本語ファイル名はキーに含めない。
+    const storagePath = `uploads/${Date.now()}_${crypto.randomUUID()}.${safeExt}`;
+    const safeName = originalName;
 
     const { error: uploadError } = await supabase.storage
       .from(STORAGE_BUCKET)
@@ -1758,6 +1774,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
 
     const payload=makePayload(f,lastQuality);
     latestDiagnosisId=(window.crypto?.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`);
+    window.latestSantaDiagnosisId = latestDiagnosisId;
     payload.diagnosis_id=latestDiagnosisId;
     payload.santa_ranking=rows.map(x=>({id:x.id,name:x.name,score:x.score,asset:x.asset,image2d:x.image2d,image3d:x.image3d,query:x.query}));
     payload.top_type=best.name;
