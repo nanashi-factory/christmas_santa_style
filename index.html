@@ -499,6 +499,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
   let latestSantaRows = [];
   // Module script（X投稿処理）から参照できるよう公開
   window.getLatestSantaRows = () => latestSantaRows;
+  window.getSantaImageMode = () => santaImageMode;
   function applySantaImageMode(mode){
     santaImageMode = mode === "3d" ? "3d" : "2d";
     document.querySelectorAll(".image-mode-btn").forEach(btn=>btn.classList.toggle("active",btn.dataset.imageMode===santaImageMode));
@@ -1470,7 +1471,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
       word2,
       diagnosis_style:best.name,
       diagnosis_score:best.score,
-      image_mode:santaImageMode,
+      image_mode:window.getSantaImageMode?.() || "2d",
       created_at:new Date().toISOString()
     };
     const xWindow=window.open("about:blank","_blank");
