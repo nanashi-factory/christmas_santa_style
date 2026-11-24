@@ -155,7 +155,10 @@ body:before{
 }
 .result-photo{padding:10px;background:linear-gradient(180deg,#fff,#fff2f8)}
 .result-photo-head{font-size:11px;font-weight:1000;color:#a12c57;padding:3px 5px 9px}
-.result-photo img{width:100%;height:100%;min-height:390px;object-fit:cover;border-radius:20px;background:#ffeaf3}
+.result-photo-visual{position:relative;width:100%;line-height:0;border-radius:20px;overflow:hidden;background:#ffeaf3}
+.result-photo-visual img{display:block;width:100%;height:auto;min-height:0;object-fit:contain;border-radius:20px}
+#resultPoseCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.pose-legend{font-size:10px;color:#95647a;text-align:center;padding:7px 2px 1px;line-height:1.5}
 .best-card{position:relative;background:#0b382b url("assets/background/diagnosis_card_christmas_frame.png") center/100% 100% no-repeat;padding:86px 24px 92px;border:0;box-shadow:0 18px 42px rgba(20,55,39,.28);box-sizing:border-box}
 .best-card:after{content:none}
 .best-top:after{content:"✦  ✧  ❄  ✧  ✦";display:block;color:#dba83e;letter-spacing:.55em;font-size:14px;margin-top:10px}
@@ -320,7 +323,11 @@ body:before{
     <div class="result-hero">
       <div class="result-photo">
         <div class="result-photo-head">📸 あなたの写真からチェックしました</div>
-        <img id="resultUserPhoto" alt="診断に使った写真">
+        <div class="result-photo-visual">
+          <img id="resultUserPhoto" alt="診断に使った写真">
+          <canvas id="resultPoseCanvas" aria-label="写真に重ねた骨格ポイント図"></canvas>
+        </div>
+        <div class="pose-legend">● 肩・腰・膝・足首などの検出ポイント</div>
       </div>
 
       <div class="best-card">
@@ -565,12 +572,17 @@ window.CHRISTMAS_SANTA_ASSETS = {
       {id:16,name:"パンツスタイルサンタ",asset:"16",ideal:[1.00,.52,.32,.78],query:"サンタ パンツスタイル ジャケット レディース",reason:"ジャケットや長ズボンを取り入れたすっきりしたパンツスタイル。スカート以外のサンタコーデを楽しみたい人に向いたデザインです。"}
     ];
     const v=[Number(f?.shoulderHip ?? 1),Number(f?.legRatio ?? .5),Number(f?.torsoRatio ?? .3),Number(f?.waistHip ?? .8)];
-    const scales=[.20,.12,.12,.20];
-    const weights=[.30,.25,.20,.25];
-    const sim=(a,b,s)=>Math.max(0,1-Math.min(1,Math.abs(a-b)/s));
+    // 以前は許容幅が広く、70+raw*28の式で各タイプが80%前後に集中していました。
+    // 今回は各比率と衣装シルエットの目安値との差を正規化し、違いが点数に反映されるよう調整。
+    // これは体型の優劣ではなく、衣装デザインとの相対的なバランス目安です。
+    const tolerances=[.10,.060,.065,.105];
+    const weights=[.32,.25,.18,.25];
     return types.map(t=>{
-      const raw=t.ideal.reduce((sum,b,i)=>sum+sim(v[i],b,scales[i])*weights[i],0);
-      const score=clamp(Math.round(70+raw*28),70,98);
+      const distance=t.ideal.reduce((sum,target,i)=>{
+        const deviation=Math.min(1.6,Math.abs(v[i]-target)/tolerances[i]);
+        return sum+deviation*weights[i];
+      },0);
+      const score=clamp(Math.round(97-distance*34),55,97);
       const paths=window.CHRISTMAS_SANTA_ASSETS[t.asset];
       return {...t,score,image2d:paths["2d"],image3d:paths["3d"],image:paths[santaImageMode]};
     }).sort((a,b)=>b.score-a.score || a.id-b.id);
@@ -816,6 +828,37 @@ window.CHRISTMAS_SANTA_ASSETS = {
     qualityList.innerHTML = q.checks.map(c =>
       `<li class="${c.state === "ok" ? "q-ok" : "q-warn"}">${c.state === "ok" ? "✅" : "⚠️"} <strong>${c.label}</strong>：${c.text}</li>`
     ).join("");
+  }
+
+  function drawResultPose(lm){
+    const img=document.getElementById("resultUserPhoto");
+    const canvas=document.getElementById("resultPoseCanvas");
+    if(!img || !canvas || !lm?.length) return;
+    const paint=()=>{
+      const w=img.clientWidth, h=img.clientHeight;
+      if(!w || !h) return;
+      const dpr=Math.max(1,window.devicePixelRatio||1);
+      canvas.width=Math.round(w*dpr); canvas.height=Math.round(h*dpr);
+      const ctx=canvas.getContext("2d");
+      ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h);
+      const pts=lm.map(p=>({x:p.x*w,y:p.y*h,visibility:p.visibility??1}));
+      // 胴体・腕・脚を写真上に重ね、関節位置を小さなポイントで示す
+      ctx.lineCap="round"; ctx.lineJoin="round"; ctx.lineWidth=Math.max(2,w*.006);
+      ctx.strokeStyle="rgba(77,225,206,.95)"; ctx.shadowColor="rgba(0,0,0,.45)"; ctx.shadowBlur=3;
+      for(const [a,b] of connections){
+        const p=pts[a],q=pts[b];
+        if(p&&q&&p.visibility>.25&&q.visibility>.25){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}
+      }
+      ctx.shadowBlur=0;
+      pts.forEach((p,i)=>{
+        if(!p||p.visibility<.25) return;
+        const major=[0,11,12,23,24,25,26,27,28].includes(i);
+        ctx.beginPath();ctx.arc(p.x,p.y,major?Math.max(3,w*.009):Math.max(1.8,w*.005),0,Math.PI*2);
+        ctx.fillStyle=major?"#fff2a8":"#ffffff";ctx.fill();
+        ctx.lineWidth=1.5;ctx.strokeStyle="#9b3bd1";ctx.stroke();
+      });
+    };
+    if(img.complete && img.naturalWidth) paint(); else img.addEventListener("load",paint,{once:true});
   }
 
   function resizeCanvas(){
@@ -1787,6 +1830,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
       const saveResult=await saveToSupabase(fileInput.files?.[0],payload,santaDiagnosis);
       window.renderChristmasSanta(rows);
       document.getElementById("result").style.display="block";
+      drawResultPose(currentLandmarks);
       document.getElementById("jsonOutput").textContent=JSON.stringify({...payload,storage:saveResult},null,2);
 
       if(saveResult.skipped){
@@ -1800,6 +1844,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
       console.error(err);
       window.renderChristmasSanta(rows);
       document.getElementById("result").style.display="block";
+      drawResultPose(currentLandmarks);
       document.getElementById("jsonOutput").textContent=JSON.stringify(payload,null,2);
       engineStatus.textContent="⚠️ 診断は完了しましたが、保存に失敗しました："+(err.message||err);
       engineStatus.style.color="#d34c66";
