@@ -349,6 +349,7 @@ body:before{
 
     <div class="card top5-card">
       <div class="ribbon">👑 あなたに似合うサンタコス TOP5 ♡</div>
+      <p class="section-desc">スコアは、今回の写真をもとにした16種類の中での相対的なおすすめ度です。順位と候補間の相性差を反映しています。</p>
       <div class="top5-grid" id="santaTop5Grid"></div>
     </div>
 
@@ -572,20 +573,34 @@ window.CHRISTMAS_SANTA_ASSETS = {
       {id:16,name:"パンツスタイルサンタ",asset:"16",ideal:[1.00,.52,.32,.78],query:"サンタ パンツスタイル ジャケット レディース",reason:"ジャケットや長ズボンを取り入れたすっきりしたパンツスタイル。スカート以外のサンタコーデを楽しみたい人に向いたデザインです。"}
     ];
     const v=[Number(f?.shoulderHip ?? 1),Number(f?.legRatio ?? .5),Number(f?.torsoRatio ?? .3),Number(f?.waistHip ?? .8)];
-    // 以前は許容幅が広く、70+raw*28の式で各タイプが80%前後に集中していました。
-    // 今回は各比率と衣装シルエットの目安値との差を正規化し、違いが点数に反映されるよう調整。
-    // これは体型の優劣ではなく、衣装デザインとの相対的なバランス目安です。
+    // 4つの比率と各衣装シルエットの目安値との差を算出します。
+    // 点数は「この16種類の中での相対的なおすすめ度」です。医学的な骨格判定や
+    // 絶対的な適合確率ではありません。候補間の差が小さい写真でも順位差が見えるよう、
+    // 距離の相対差と順位の両方を使ってスコアを配分します。
     const tolerances=[.10,.060,.065,.105];
     const weights=[.32,.25,.18,.25];
-    return types.map(t=>{
+    const measured=types.map(t=>{
       const distance=t.ideal.reduce((sum,target,i)=>{
         const deviation=Math.min(1.6,Math.abs(v[i]-target)/tolerances[i]);
         return sum+deviation*weights[i];
       },0);
-      const score=clamp(Math.round(97-distance*34),55,97);
+      return {...t,distance};
+    }).sort((a,b)=>a.distance-b.distance || a.id-b.id);
+    const minDistance=measured[0]?.distance ?? 0;
+    const maxDistance=measured[measured.length-1]?.distance ?? minDistance;
+    const distanceRange=maxDistance-minDistance;
+    console.info("[Santa diagnosis] measured body ratios:", {
+      shoulderHip:v[0], legRatio:v[1], torsoRatio:v[2], waistHip:v[3]
+    });
+    return measured.map((t,index)=>{
+      const rankRatio=measured.length>1 ? index/(measured.length-1) : 0;
+      const distanceRatio=distanceRange>1e-9 ? (t.distance-minDistance)/distanceRange : rankRatio;
+      // 順位を主軸(70%)、候補間の距離差を補助(30%)として、約60〜96点に展開。
+      const relativeFit=rankRatio*.70+distanceRatio*.30;
+      const score=clamp(Math.round(96-relativeFit*36),60,96);
       const paths=window.CHRISTMAS_SANTA_ASSETS[t.asset];
       return {...t,score,image2d:paths["2d"],image3d:paths["3d"],image:paths[santaImageMode]};
-    }).sort((a,b)=>b.score-a.score || a.id-b.id);
+    });
   };
 })();
 </script>
